@@ -34,3 +34,9 @@ class Municipio(models.Model):
 
     class Meta:
         db_table = 'Municipio'
+
+class SectorEmpresarial(models.Model):
+    Nombre = models.CharField(max_length=250)
+
+    def __str__(self):
+        return self.Nombre
