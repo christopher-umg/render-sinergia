@@ -77,3 +77,25 @@ class Moneda(models.Model):
 
     class Meta:
         db_table = 'Moneda'
+
+class CategoriasEmpleos(models.Model):
+    IdCategoriasEmpleos = models.AutoField(primary_key=True, db_column='IdCategoriasEmpleos')
+    Nombre = models.CharField(max_length=150)
+    Estado = models.BooleanField(default=False)
+
+    def __str__(self):
+        return self.Nombre
+
+    class Meta:
+        db_table = 'CategoriasEmpleos'
+
+class CategoriaProyectos(models.Model):
+    IdCategoria = models.AutoField(primary_key=True, db_column='IdCategoria')
+    Nombre = models.CharField(max_length=150)
+    Estado = models.BooleanField(default=False)
+
+    def __str__(self):
+        return self.Nombre
+
+    class Meta:
+        db_table = 'CategoriaProyectos'
