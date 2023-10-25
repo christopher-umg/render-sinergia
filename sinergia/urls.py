@@ -17,6 +17,8 @@ from django.contrib import admin
 from django.urls import path, include
 from django.contrib.auth.models import User
 from rest_framework import routers, serializers, viewsets
+from Login import views
+
 
 # Serializers define the API representation.
 class UserSerializer(serializers.HyperlinkedModelSerializer):
@@ -35,8 +37,17 @@ router.register(r'users', UserViewSet)
 
 urlpatterns = [
     path('admin/', admin.site.urls),
-    path('', include(router.urls)),
+    # Rutas api
+    path('api-users/', include(router.urls)),
     path('api-auth/', include('rest_framework.urls', namespace='rest_framework')),
-    # Otras rutas api
     path('api-generales/', include('generales.urls')),
+    # Rutas front
+    path('', views.helloWorld,name="inicio"),
+    path('login/',views.LoginPage, name='login_page'),
+    path('home/',views.homePage, name='home_page'),
+    path('singUp/',views.SingUpPage, name='singUp'),
+    path('projects/',views.projectPage, name='projects'),
+    path('jobs/',views.jobsPage, name='jobs'),
+    path('help/',views.helpPage,name='help'),
+    path('logout/',views.cerrarSesion,name='logOut')
 ]

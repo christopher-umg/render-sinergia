@@ -1,0 +1,76 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <!--Bootstrap v5.2-->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-rbsA2VBKQhggwzxH7pPCaAqO46MgnOM80zW1RWuH61DGLwZJEdK2Kadq2F9CUG65" crossorigin="anonymous">
+<!--Bootstrap Icon-->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.1/font/bootstrap-icons.css">
+    <!--Estilos Generales-->    
+    <link rel="stylesheet" type="text/css"  href="{% static 'css/general.css' %}">
+    <title>Inicio</title>
+</head>
+<body>
+   
+    <header class="bg-blue pb-md-5 mb-md-5">
+        <div class="d-flex flex-row-reverse">
+            <nav class="navbar navbar-expand-lg bg-dark">
+                <ul class="nav ">
+                    <li class="nav-item">
+                        <a href="{% url 'inicio' %}" class="nav-link active text-center">
+                            <i class="bi bi-house-door-fill "></i>
+                            <h6>inicio</h6>
+                        </a>
+                        
+                    </li>
+                    <li class="nav-item">
+                        <a href="{% url 'login_page' %}" class="nav-link text-center">
+                        <i class="bi bi-person-fill"></i>
+                        <h6>Iniciar sesion</h6>
+                        </a>
+                        
+                    </li>
+                    <li class="nav-item">
+                        <a href="{% url 'singUp' %}" class="nav-link text-center">
+                            <i class="bi bi-person-fill-add"></i>
+                            <h6>Registro</h6>
+                        </a>
+                        
+                    </li>
+                </ul>
+            </nav>    
+        </div>
+        <div class="text-center text-light">
+            <h1>ProyectoSinergia</h1>
+            <p>Colaboración y Sinergia entre estudiantes y empresas</p>
+        </div>
+    </header>
+    <main class=" bg-grey text-light py-5">
+        <section class="container">
+            <h2>¿Quienes somos?</h2>
+            <article class="mt-md-5">
+                <h5>Misión</h5>
+                <p>Facilitar la conexión entre estudiantes preuniversitarios, universitarios y empresas, proporcionando una plataforma web de alta calidad que permita a los estudiantes mostrar sus proyectos académicos y habilidades, mientras que las empresas pueden encontrar talento joven y proyectos que se adaptan a sus necesidades. Nuestra misión es impulsar el crecimiento profesional y académico al brindar un espacio donde la innovación, la colaboración y la oportunidad se encuentren.</p>
+            </article>
+            <article class="mt-md-5">
+                <h5>Visión</h5>
+                <p>Ser la plataforma líder a nivel nacional en la unión de estudiantes y empresas para la colaboración en proyectos académicos y profesionales. Queremos ser reconocidos por nuestro compromiso con la excelencia, la calidad de las conexiones que creamos y el impacto positivo que generamos en la educación y la industria. Nuestra visión es construir un mundo donde cada estudiante tenga la oportunidad de aplicar su conocimiento en proyectos significativos y donde las empresas encuentren el talento que necesitan para prosperar.
+                </p>
+            </article>
+            <article class="mt-md-5">
+                <h5>Valores</h5>
+                <p>Integridad, Innovación, Colaboración, Excelencia y Oportunidad.</p>
+            </article>
+            
+        </section>
+    </main>
+    <footer class="bg-blue text-light text-center hfooter-sb">
+        <p class="pt-md-4">Copyright ©Grupo Proyecto 2</p>
+    </footer>
+</body>
+
+<script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.6/dist/umd/popper.min.js" integrity="sha384-oBqDVmMz9ATKxIep9tiCxS/Z9fNfEXiDAYTujMAeBAsjFuCZSmKbSSUnQlmh/jp3" crossorigin="anonymous"></script>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.min.js" integrity="sha384-cuYeSxntonz0PPNlHhBs68uyIAVpIIOZZ5JqeqvYYIcEL727kskC66kF92t6Xl2V" crossorigin="anonymous"></script>
+</html>

@@ -25,7 +25,7 @@ SECRET_KEY = 'django-insecure-4ez*ojzdsbntsxh7*sp%n6(wg7aodyhpe!dzr1*lr9hh$e80z(
 # SECRET_KEY = os.environ.get('SECRET_KEY', default='your secret key')
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = True
+DEBUG = False
 # DEBUG = 'RENDER' not in os.environ
 
 ALLOWED_HOSTS = ['*']
@@ -44,6 +44,7 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
     'rest_framework',
     'generales',
+    'Login',
 ]
 
 REST_FRAMEWORK = {
@@ -142,6 +143,9 @@ USE_TZ = True
 # https://docs.djangoproject.com/en/3.2/howto/static-files/
 
 STATIC_URL = '/static/'
+STATICFILES_DIRS = [
+    os.path.join(BASE_DIR, 'static'),
+]
 
 # Following settings only make sense on production and may break development environments.
 if not DEBUG:    # Tell Django to copy statics to the `staticfiles` directory
