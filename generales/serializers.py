@@ -11,19 +11,7 @@ class DepartamentoSerializer(serializers.ModelSerializer):
         model = Departamento
         fields = '__all__'
 
-class DepartamentoDetailSerializer(serializers.ModelSerializer):
-    IdPais = PaisSerializer()
-    class Meta:
-        model = Departamento
-        fields = '__all__'
-
 class MunicipioSerializer(serializers.ModelSerializer):
-    class Meta:
-        model = Municipio
-        fields = '__all__'
-
-class MunicipioDetailSerializer(serializers.ModelSerializer):
-    IdDepartamento = DepartamentoSerializer()
     class Meta:
         model = Municipio
         fields = '__all__'
