@@ -1,12 +1,15 @@
 from django.urls import path, include
 from rest_framework import routers
-from .views import PaisViewSet, DepartamentoViewSet, MunicipioViewSet, SectorEmpresarialViewSet
+from .views import PaisViewSet, DepartamentoViewSet, MunicipioViewSet, SectorEmpresarialViewSet, TipoUsuarioViewSet, TipoActividadUsuarioViewSet, MonedaViewSet
 
 router = routers.DefaultRouter()
 router.register(r'paises', PaisViewSet)
 router.register(r'departamentos', DepartamentoViewSet)
 router.register(r'municipios', MunicipioViewSet)
 router.register(r'sectores-empresariales', SectorEmpresarialViewSet)
+router.register(r'tipo-usuarios', TipoUsuarioViewSet)
+router.register(r'tipo-actividad-usuarios', TipoActividadUsuarioViewSet)
+router.register(r'monedas', MonedaViewSet)
 
 urlpatterns = [
     path('', include(router.urls)),

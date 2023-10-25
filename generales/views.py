@@ -1,7 +1,7 @@
 from rest_framework import viewsets
 from rest_framework.response import Response
-from .models import Pais, Departamento, Municipio, SectorEmpresarial
-from .serializers import PaisSerializer, DepartamentoSerializer, MunicipioSerializer, SectorEmpresarialSerializer
+from .models import Pais, Departamento, Municipio, SectorEmpresarial, TipoUsuario, TipoActividadUsuario, Moneda
+from .serializers import PaisSerializer, DepartamentoSerializer, MunicipioSerializer, SectorEmpresarialSerializer, TipoUsuarioSerializer, TipoActividadUsuarioSerializer, MonedaSerializer
 
 class PaisViewSet(viewsets.ModelViewSet):
     queryset = Pais.objects.all()
@@ -36,3 +36,15 @@ class MunicipioViewSet(viewsets.ModelViewSet):
 class SectorEmpresarialViewSet(viewsets.ModelViewSet):
     queryset = SectorEmpresarial.objects.all()
     serializer_class = SectorEmpresarialSerializer
+
+class TipoUsuarioViewSet(viewsets.ModelViewSet):
+    queryset = TipoUsuario.objects.all()
+    serializer_class = TipoUsuarioSerializer
+
+class TipoActividadUsuarioViewSet(viewsets.ModelViewSet):
+    queryset = TipoActividadUsuario.objects.all()
+    serializer_class = TipoActividadUsuarioSerializer
+
+class MonedaViewSet(viewsets.ModelViewSet):
+    queryset = Moneda.objects.all()
+    serializer_class = MonedaSerializer
