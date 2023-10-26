@@ -73,7 +73,7 @@ def SingUpPage(request):
                 print(e)
                 traceback.print_exc()
                 return render(request, 'Pages/SignUp.html', {
-                    "error": "Usuario existente en la BDD"
+                    "error": e
                 })
         return render(request,'Pages/SignUp.html',{
             "error": "Contraseñas no coinciden"
