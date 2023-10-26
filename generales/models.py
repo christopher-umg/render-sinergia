@@ -1,4 +1,13 @@
 from django.db import models
+import os
+import uuid
+from django.utils.text import get_valid_filename
+
+def generar_nombre_uniq(ruta_de_destino, instance, filename):
+    _, ext = os.path.splitext(filename)
+    nombre_original = get_valid_filename(os.path.basename(filename))
+    nombre_uniq = f'{nombre_original}_{uuid.uuid4()}{ext}'
+    return os.path.join(ruta_de_destino, nombre_uniq)
 
 class Pais(models.Model):
     IdPais = models.AutoField(primary_key=True, db_column='IdPais')
@@ -110,6 +119,11 @@ class Empresa(models.Model):
     Descripcion = models.TextField()
     Foto = models.ImageField(upload_to='empresas/fotos/', null=True, blank=True)
 
+    def save(self, *args, **kwargs):
+        if not self.IdEmpresa:
+            self.Foto.name = generar_nombre_uniq('empresas/fotos/', self, self.Foto.name)
+        super(Empresa, self).save(*args, **kwargs)
+
     def __str__(self):
         return self.Nombre
 
@@ -125,6 +139,11 @@ class InstitucionEducativa(models.Model):
     Nombre = models.CharField(max_length=250)
     Descripcion = models.TextField()
     Foto = models.ImageField(upload_to='instituciones/fotos/', null=True, blank=True)
+
+    def save(self, *args, **kwargs):
+        if not self.IdInstitucionEducativa:
+            self.Foto.name = generar_nombre_uniq('instituciones/fotos/', self, self.Foto.name)
+        super(Empresa, self).save(*args, **kwargs)
 
     def __str__(self):
         return self.Nombre

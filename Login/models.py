@@ -1,6 +1,15 @@
 from django.db import models
 from django.contrib.auth.models import User
 from generales.models import TipoUsuario, Pais, Departamento, Municipio, InstitucionEducativa, Empresa
+import os
+import uuid
+from django.utils.text import get_valid_filename
+
+def generar_nombre_uniq(ruta_de_destino, instance, filename):
+    _, ext = os.path.splitext(filename)
+    nombre_original = get_valid_filename(os.path.basename(filename))
+    nombre_uniq = f'{nombre_original}_{uuid.uuid4()}{ext}'
+    return os.path.join(ruta_de_destino, nombre_uniq)
 
 class InfoUsuario(models.Model):
     IdInfoUsuario = models.AutoField(primary_key=True, db_column='IdInfoUsuario')
@@ -18,8 +27,13 @@ class InfoUsuario(models.Model):
     Carnet = models.CharField(max_length=100, null=True, blank=True)
     FotoPerfil = models.ImageField(upload_to='fotos-perfil/', null=True, blank=True)
 
+    def save(self, *args, **kwargs):
+        if not self.IdInfoUsuario:
+            self.FotoPerfil.name = generar_nombre_uniq('fotos-perfil/', self, self.FotoPerfil.name)
+        super(InfoUsuario, self).save(*args, **kwargs)
+
     def __str__(self):
-        return self.Nombre
+        return self.CorreoInstitucional
 
     class Meta:
         db_table = 'InfoUsuario'
