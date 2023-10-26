@@ -5,7 +5,9 @@ from django.http import HttpResponse
 from django.contrib.auth.models import User
 from django.contrib.auth.forms import AuthenticationForm
 from django.contrib.auth import login, logout, authenticate
-
+from .models import InfoUsuario
+from generales.models import TipoUsuario, Pais, Departamento, Municipio, InstitucionEducativa, Empresa
+import traceback
 
 
 
@@ -31,15 +33,46 @@ def homePage(request):
 
 def SingUpPage(request):
     if request.method =='GET':
-        return render(request,'Pages/SignUp.html')
+        tipos_usuarios = TipoUsuario.objects.filter(Estado=True).values('IdTipoUsuario', 'Nombre')
+        instituciones_educativas = InstitucionEducativa.objects.all().values('IdInstitucionEducativa', 'Nombre')
+
+        return render(request,'Pages/SignUp.html', {'tipos_usuarios': tipos_usuarios, 'instituciones_educativas': instituciones_educativas})
     else:
         if request.POST['password1']==request.POST['password2']:
             try:
-                user=User.objects.create_user(username=request.POST['Username'],password=request.POST['password1'],email=request.POST['Correo'])
+                user=User.objects.create_user(username=request.POST['user_name'],email=request.POST['correo'],password=request.POST['password1'],first_name=request.POST['first_name'],last_name=request.POST['last_name'])
                 user.save()
+                
+                tipo_usuario = TipoUsuario.objects.get(IdTipoUsuario=int(request.POST['tipo_usuario']))
+                pais = Pais.objects.get(IdPais=int(request.POST['pais']))
+                departamento = Departamento.objects.get(IdDepartamento=int(request.POST['departamento']))
+                municipio = Municipio.objects.get(IdMunicipio=int(request.POST['municipio']))
+                institucion_educativa = InstitucionEducativa.objects.get(IdInstitucionEducativa=int(request.POST['institucion_educativa']))
+                empresa = Empresa.objects.get(IdEmpresa=1)
+
+                info_usuario = InfoUsuario(
+                    IdUsuario=user,
+                    IdTipoUsuario=tipo_usuario,
+                    IdPais=pais,
+                    IdDepartamento=departamento,
+                    IdMunicipio=municipio,
+                    IdInstitucionEducativa=institucion_educativa,
+                    IdEmpresa=empresa,
+                    CorreoInstitucional=request.POST['correo'],
+                    Agnio=request.POST['agnio'],
+                    Telefono=request.POST['celular'],
+                    FechaNacimiento=request.POST['fecha'],
+                    Carnet=request.POST['carnet'],
+                    FotoPerfil=request.FILES['foto_perfil']
+                )
+
+                info_usuario.save()
+                print(info_usuario)
                 return redirect('login_page')
-            except:
-                return render(request, 'Pages/SignUp.html',{
+            except Exception as e:
+                print(e)
+                traceback.print_exc()
+                return render(request, 'Pages/SignUp.html', {
                     "error": "Usuario existente en la BDD"
                 })
         return render(request,'Pages/SignUp.html',{
