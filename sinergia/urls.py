@@ -19,6 +19,9 @@ from django.contrib.auth.models import User
 from rest_framework import routers, serializers, viewsets
 from Login import views
 
+from django.conf import settings
+from django.conf.urls.static import static
+
 
 # Serializers define the API representation.
 class UserSerializer(serializers.HyperlinkedModelSerializer):
@@ -51,3 +54,7 @@ urlpatterns = [
     path('help/',views.helpPage,name='help'),
     path('logout/',views.cerrarSesion,name='logOut')
 ]
+
+
+if settings.DEBUG:
+    urlpatterns += static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)

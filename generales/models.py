@@ -99,3 +99,35 @@ class CategoriaProyectos(models.Model):
 
     class Meta:
         db_table = 'CategoriaProyectos'
+
+class Empresa(models.Model):
+    IdEmpresa = models.AutoField(primary_key=True, db_column='IdEmpresa')
+    IdPais = models.ForeignKey(Pais, on_delete=models.CASCADE, db_column='IdPais')
+    IdDepartamento = models.ForeignKey(Departamento, on_delete=models.CASCADE, db_column='IdDepartamento')
+    IdMunicipio = models.ForeignKey(Municipio, on_delete=models.CASCADE, db_column='IdMunicipio')
+    IdSectorEmpresarial = models.ForeignKey(SectorEmpresarial, on_delete=models.CASCADE, db_column='IdSectorEmpresarial')
+    Nombre = models.CharField(max_length=250)
+    Descripcion = models.TextField()
+    Foto = models.ImageField(upload_to='empresas/fotos/', null=True, blank=True)
+
+    def __str__(self):
+        return self.Nombre
+
+    class Meta:
+        db_table = 'Empresa'
+
+class InstitucionEducativa(models.Model):
+    IdInstitucionEducativa = models.AutoField(primary_key=True, db_column='IdInstitucionEducativa')
+    IdPais = models.ForeignKey(Pais, on_delete=models.CASCADE, db_column='IdPais')
+    IdDepartamento = models.ForeignKey(Departamento, on_delete=models.CASCADE, db_column='IdDepartamento')
+    IdMunicipio = models.ForeignKey(Municipio, on_delete=models.CASCADE, db_column='IdMunicipio')
+    Universidad = models.BooleanField()
+    Nombre = models.CharField(max_length=250)
+    Descripcion = models.TextField()
+    Foto = models.ImageField(upload_to='instituciones/fotos/', null=True, blank=True)
+
+    def __str__(self):
+        return self.Nombre
+    
+    class Meta:
+        db_table = 'InstitucionEducativa'
