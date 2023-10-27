@@ -29,7 +29,8 @@ def LoginPage(request):
             return redirect('home_page')
 
 def homePage(request):
-    return render(request,'Pages/home.html')
+    infoUsuario = InfoUsuario.objects.filter(IdUsuario=request.user.id).values('IdUsuario', 'FotoPerfil')
+    return render(request,'Pages/home.html',{'info': infoUsuario[0]})
 
 def SingUpPage(request):
     if request.method =='GET':

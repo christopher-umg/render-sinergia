@@ -1,6 +1,6 @@
 from django.db import models
 from django.contrib.auth.models import User
-from generales.models import TipoUsuario, Pais, Departamento, Municipio, InstitucionEducativa, Empresa
+from generales.models import TipoUsuario, Pais, Departamento, Municipio, InstitucionEducativa, Empresa, CategoriaProyectos
 import os
 import uuid
 from django.utils.text import get_valid_filename
@@ -37,3 +37,45 @@ class InfoUsuario(models.Model):
 
     class Meta:
         db_table = 'InfoUsuario'
+
+class Proyecto(models.Model):
+    IdProyecto = models.AutoField(primary_key=True, db_column='IdProyecto')
+    IdUsuario = models.ForeignKey(User, on_delete=models.CASCADE, db_column='IdUsuario')
+    IdCategoriaProyecto = models.ForeignKey(CategoriaProyectos, on_delete=models.CASCADE, db_column='IdCategoriaProyecto')
+    Titulo = models.CharField(max_length=250)
+    Descripcion = models.TextField()
+    FechaPublicacion = models.DateTimeField()
+    AutoresCV = models.FileField(upload_to='autores-cv/', null=True, blank=True)
+    DocAceptacion = models.FileField(upload_to='documentos-aceptacion/', null=True, blank=True)
+    DocClasificacion = models.FileField(upload_to='documentos-clasificacion/', null=True, blank=True)
+    DocTipificacion = models.FileField(upload_to='documentos-tipificacion/', null=True, blank=True)
+    DocIdentificacion = models.FileField(upload_to='documentos-identificacion/', null=True, blank=True)
+    AvalEducativo = models.FileField(upload_to='avales-educativo/', null=True, blank=True)
+    BriefProyecto = models.FileField(upload_to='brief-proyectos/', null=True, blank=True)
+    LienzoCanva = models.FileField(upload_to='lienzos-canva/', null=True, blank=True)
+    DocAPA = models.FileField(upload_to='documentos-apa/', null=True, blank=True)
+    ProFinanciera = models.FileField(upload_to='documentos-financieros/', null=True, blank=True)
+    Presentacion = models.FileField(upload_to='presentaciones/', null=True, blank=True)
+    Video = models.FileField(upload_to='videos/', null=True, blank=True)
+
+    def save(self, *args, **kwargs):
+        if not self.IdProyecto:
+            self.AutoresCV.name = generar_nombre_uniq('autores-cv/', self, self.AutoresCV.name)
+            self.DocAceptacion.name = generar_nombre_uniq('documentos-aceptacion/', self, self.DocAceptacion.name)
+            self.DocClasificacion.name = generar_nombre_uniq('documentos-clasificacion/', self, self.DocClasificacion.name)
+            self.DocTipificacion.name = generar_nombre_uniq('documentos-tipificacion/', self, self.DocTipificacion.name)
+            self.DocIdentificacion.name = generar_nombre_uniq('documentos-identificacion/', self, self.DocIdentificacion.name)
+            self.AvalEducativo.name = generar_nombre_uniq('avales-educativo/', self, self.AvalEducativo.name)
+            self.BriefProyecto.name = generar_nombre_uniq('brief-proyectos/', self, self.BriefProyecto.name)
+            self.LienzoCanva.name = generar_nombre_uniq('lienzos-canva/', self, self.LienzoCanva.name)
+            self.DocAPA.name = generar_nombre_uniq('documentos-apa/', self, self.DocAPA.name)
+            self.ProFinanciera.name = generar_nombre_uniq('documentos-financieros/', self, self.ProFinanciera.name)
+            self.Presentacion.name = generar_nombre_uniq('presentaciones/', self, self.Presentacion.name)
+            self.Video.name = generar_nombre_uniq('videos/', self, self.Video.name)
+        super(Proyecto, self).save(*args, **kwargs)
+
+    def __str__(self):
+        return self.Titulo
+
+    class Meta:
+        db_table = 'Proyecto'
