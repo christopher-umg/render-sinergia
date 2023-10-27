@@ -15,63 +15,58 @@
     <title>Inicio</title>
 </head>
 <body>
-    <header class="bg-blue pb-md-5">
-        <div class="d-flex flex-row-reverse">
-            <nav class="navbar navbar-expand-lg bg-dark">
-                <ul class="nav ">
-                    <li class="nav-item">
-                        <a href="{% url 'inicio' %}" class="nav-link active text-center">
-                            <i class="bi bi-house-door-fill "></i>
-                            <h6>inicio</h6>
-                        </a>
-                        
+    <nav class="navbar navbar-expand-lg bg-dark">
+        <div class="container-fluid">
+            <div class="collapse navbar-collapse">
+                <ul class="navbar-nav  col-md-12 ">
+                    <li class="col nav-item text-center sb_hover">
+                        <i class="bi bi-house-door-fill text-light"></i>
+                        <a href="{% url 'inicio' %}" class="text-light nav-link ">Inicio</a>
                     </li>
-                    <li class="nav-item">
-                        <a href="{% url 'login_page' %}" class="nav-link text-center">
-                        <i class="bi bi-person-fill"></i>
-                        <h6>Iniciar sesion</h6>
-                        </a>
-                        
+                    <li class="col nav-item sb_hover text-center">
+                        <i class="bi bi-person-fill text-light"></i>
+                        <a href="{% url 'login_page' %}" class=" text-light nav-link active">Iniciar Sesión</a>
                     </li>
-                    <li class="nav-item">
-                        <a href="{% url 'singUp' %}" class="nav-link text-center">
-                            <i class="bi bi-person-fill-add"></i>
-                            <h6>Registro</h6>
-                        </a>
-                        
+                    <li class="col nav-item sb_hover text-center">
+                        <i class="bi bi-person-fill text-light"></i>
+                        <a href="{% url 'singUp' %}" class=" text-light nav-link">Registrate</a>
                     </li>
                 </ul>
-            </nav>    
+            </div>
+
         </div>
+    </nav>
+    <header class="bg-blue pb-md-5 mt-5">
         <div class="text-center text-light">
-            <h1>ProyectoSinergia</h1>
-            <p>Colaboración y sinergia entre estudiantes y empresas</p>
+            <h1>Proyecto Sinergia</h1>
+            <p>Colaboración y Sinergia entre Estudiantes y Empresas.</p>
         </div>
     </header>
     <main class="bg-grey py-5">
         <div class="wrapper">
+            <h2 class="text-center">Inicia Sesión</h2>
             <form class="p-3 mt-3" method="POST">
                 {% csrf_token %}
                 <div class="form-field d-flex align-items-center">
                     <span class="far fa-user"></span>
-                    <input type="text" name="userName" id="userName" required placeholder="Username">
+                    <input type="text" name="userName" id="userName" required placeholder="Usuario">
                 </div>
                 <div class="form-field d-flex align-items-center">
                     <span class="fas fa-key"></span>
-                    <input type="password" name="password" id="pwd" required placeholder="Password">
+                    <input type="password" name="password" id="pwd" required placeholder="Contraseña">
+                </div>
+                <div class="alert alert-danger">
+                    {{error}}
                 </div>
                 <button class="btn mt-3">Login</button>
             </form>
             <div class="text-center fs-6">
-                <span>Olvidaste tu contraseña? <a href="#">Clic aquí</a></span>
+                <span>Olvidaste tu Contraseña? <a href="#">Clic Aquí</a></span>
             </div>
-        </div>
-        <div class="alert alert-danger">
-            {{error}}
         </div>
     </main>
     <footer class="bg-blue text-light text-center hfooter-sb">
-        <p class="pt-md-4">Copyright ©Grupo Proyecto 2</p>
+        <p class="pt-md-4">Copyright 2023 Sinergia - Todos los derechos reservados</p>
     </footer>
 </body>
 

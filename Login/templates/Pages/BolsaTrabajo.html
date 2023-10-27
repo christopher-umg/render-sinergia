@@ -11,13 +11,11 @@
     <!--Bootstrap Icon-->
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.1/font/bootstrap-icons.css">
     <!--Estilos Generales-->
-    <link rel="stylesheet" type="text/css"  href="{% static 'css/general.css' %}">
+    <link rel="stylesheet" type="text/css" href="{% static 'css/general.css' %}">
 
     <link rel="stylesheet" type="text/css" href="{% static 'css/bolsaempleo.css' %}">
-    
-    <title>
-        Bolsa de Trabajo
-    </title>
+
+    <title>Bolsa de Trabajo</title>
 </head>
 
 <body>
@@ -35,62 +33,73 @@
                     </li>
                     <li class="col nav-item sb_hover text-center">
                         <i class="bi bi-bag-plus text-light"></i>
-                        <a href="{% url 'jobs' %}" class=" text-light nav-link">Bolsa de trabajo</a>
+                        <a href="{% url 'jobs' %}" class=" text-light nav-link">Bolsa de Trabajo</a>
                     </li>
                     <li class="col nav-item sb_hover text-center">
                         <i class="bi bi-info-circle-fill text-light"></i>
-                        <a href="{% url 'help' %}" class=" text-light nav-link">Espacio de apoyo</a>
+                        <a href="{% url 'help' %}" class=" text-light nav-link">Espacio de Apoyo</a>
                     </li>
                     <li class="col nav-item sb_hover text-center">
                         <i class="bi bi-box-arrow-right text-light"></i>
-                        <a href="{% url 'logOut' %}" class=" text-light nav-link">Cerrar sesión</a>
+                        <a href="{% url 'logOut' %}" class=" text-light nav-link">Cerrar Sesión</a>
                     </li>
                 </ul>
             </div>
-
         </div>
-
     </nav>
     <header class="text-light text-center mt-md-5 mt-sm-5">
-        <h1>¿Buscas empleo?</h1>
-        <p>Encuentre el empleo que encaja contigo</p>
-        <div class="bg-light container d-flex col-md-8 sb-height-1 sb-margin-1  align-items-center justify-content-between">
-            <form class="d-flex col-md-6"  role="search">
-                <input class="form-control me-2" type="search" placeholder="Cargo o área" aria-label="Search">
-              </form>
-            <form class="d-flex col-md-5"  role="search">
-                <input class="form-control me-2" type="search" placeholder="Lugar" aria-label="Search">
-              </form>
-              <button class="btn btn-primary" type="submit">Buscar</button>
+        <h1>¿Buscas Trabajo?</h1>
+        <p>¡Encuentra oportunidades emocionantes y haz crecer tu carrera en la industria de tus sueños!</p>
+        <div
+            class="bg-light container d-flex col-md-8 sb-height-1 sb-margin-1 align-items-center justify-content-between">
+            <form class="d-flex col-md-6" role="search">
+                <input class="form-control me-2" type="search" placeholder="Categoría" aria-label="Search">
+            </form>
+            <form class="d-flex col-md-5" role="search">
+                <input class="form-control me-2" type="search" placeholder="País" aria-label="Search">
+            </form>
+            <button class="btn btn-primary" type="submit">Buscar</button>
         </div>
-    </header> 
-    <main class="bg-light container-fluid mt-md-3">
-        <section class="text-center d-flex justify-content-around pt-md-5 px-md-5">
-            <div class="d-flex flex-column justify-content-center align-items-center">
-                <p class="mb-md-0">Ofertas de empleo disponibles: +3460</p>
-                <svg xmlns="http://www.w3.org/2000/svg" width="50" height="50" fill="currentColor" class="bi bi-card-list sb-color-blue" viewBox="0 0 16 16">
-                    <path d="M14.5 3a.5.5 0 0 1 .5.5v9a.5.5 0 0 1-.5.5h-13a.5.5 0 0 1-.5-.5v-9a.5.5 0 0 1 .5-.5h13zm-13-1A1.5 1.5 0 0 0 0 3.5v9A1.5 1.5 0 0 0 1.5 14h13a1.5 1.5 0 0 0 1.5-1.5v-9A1.5 1.5 0 0 0 14.5 2h-13z"/>
-                    <path d="M5 8a.5.5 0 0 1 .5-.5h7a.5.5 0 0 1 0 1h-7A.5.5 0 0 1 5 8zm0-2.5a.5.5 0 0 1 .5-.5h7a.5.5 0 0 1 0 1h-7a.5.5 0 0 1-.5-.5zm0 5a.5.5 0 0 1 .5-.5h7a.5.5 0 0 1 0 1h-7a.5.5 0 0 1-.5-.5zm-1-5a.5.5 0 1 1-1 0 .5.5 0 0 1 1 0zM4 8a.5.5 0 1 1-1 0 .5.5 0 0 1 1 0zm0 2.5a.5.5 0 1 1-1 0 .5.5 0 0 1 1 0z"/>
-                  </svg>
-            </div>
-            <div class="d-flex flex-column justify-content-center align-items-center">
-                <p class="mb-md-0">Empresas afiliadas: +231</p>
-                <svg xmlns="http://www.w3.org/2000/svg" width="50" height="50" fill="currentColor" class="bi bi-buildings-fill sb-color-blue" viewBox="0 0 16 16">
-                    <path d="M15 .5a.5.5 0 0 0-.724-.447l-8 4A.5.5 0 0 0 6 4.5v3.14L.342 9.526A.5.5 0 0 0 0 10v5.5a.5.5 0 0 0 .5.5h9a.5.5 0 0 0 .5-.5V14h1v1.5a.5.5 0 0 0 .5.5h3a.5.5 0 0 0 .5-.5V.5ZM2 11h1v1H2v-1Zm2 0h1v1H4v-1Zm-1 2v1H2v-1h1Zm1 0h1v1H4v-1Zm9-10v1h-1V3h1ZM8 5h1v1H8V5Zm1 2v1H8V7h1ZM8 9h1v1H8V9Zm2 0h1v1h-1V9Zm-1 2v1H8v-1h1Zm1 0h1v1h-1v-1Zm3-2v1h-1V9h1Zm-1 2h1v1h-1v-1Zm-2-4h1v1h-1V7Zm3 0v1h-1V7h1Zm-2-2v1h-1V5h1Zm1 0h1v1h-1V5Z"/>
-                  </svg>
-            </div>
+        <br>
+    </header>
+    <main class="bg-light container-fluid pt-md-1 pt-xxl-5 pt-xl-5 pt-lg-5 pt-md-5 pt-sm-5">
+        <section class="container">
+            <article class="">
+                <div class="row row-cols-1 rows-cols-md-2 row-cols-xl-3 rows-cols-lg-2 g-4 mt-2">
+                    <div class="col">
+                        <div class="card ">
+                            <div class="card-header">
+                                <h6 class="card-title">Developer</h6>
+                                <P>Programación</p>
+                            </div>
+                            <div class="card-body">
+                                <P>Empresa: Tec Solutions</P>
+                                <P>Lugar: Técpan (Chimaltenanto), Guatemala</p>
+                                <P>Oferta Salarial: $3000 a $5000</P>
+                                <p class="card-text">Lorem ipsum dolor sit amet consectetur adipisicing elit. Nobis
+                                    vitae quasi distinctio architecto pariatur ipsa soluta maiores minus quia quisquam,
+                                    rerum possimus voluptatem provident ullam illo eaque incidunt tempore excepturi.</p>
+                            </div>
+                            <div class="card-footer">
+                                <a href="#" target="_blank"
+                                    class="btn btn-light border border-secondary sb-morado">Aplicar</a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </article>
+            <br><br>
         </section>
-        
-        <div class="container mt-md-5 text-center">
-            <img src="{% static 'images/fondoBolsaTrabajo.webp' %}" alt="bolsaTrabajo" class="mb-md-5">
-        </div>
-        
     </main>
     <footer class="bg-blue text-light text-center hfooter-sb">
-        <p class="pt-md-4">Copyright ©Grupo Proyecto 2</p>
+        <p class="pt-md-4">Copyright 2023 Sinergia - Todos los derechos reservados</p>
     </footer>
-    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.6/dist/umd/popper.min.js" integrity="sha384-oBqDVmMz9ATKxIep9tiCxS/Z9fNfEXiDAYTujMAeBAsjFuCZSmKbSSUnQlmh/jp3" crossorigin="anonymous"></script>
-<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.min.js" integrity="sha384-cuYeSxntonz0PPNlHhBs68uyIAVpIIOZZ5JqeqvYYIcEL727kskC66kF92t6Xl2V" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.6/dist/umd/popper.min.js"
+        integrity="sha384-oBqDVmMz9ATKxIep9tiCxS/Z9fNfEXiDAYTujMAeBAsjFuCZSmKbSSUnQlmh/jp3"
+        crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.min.js"
+        integrity="sha384-cuYeSxntonz0PPNlHhBs68uyIAVpIIOZZ5JqeqvYYIcEL727kskC66kF92t6Xl2V"
+        crossorigin="anonymous"></script>
 </body>
 
 </html>

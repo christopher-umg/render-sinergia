@@ -13,61 +13,56 @@
     <title>Inicio</title>
 </head>
 <body>
-   
-    <header class="bg-blue pb-md-5 mb-md-5">
-        <div class="d-flex flex-row-reverse">
-            <nav class="navbar navbar-expand-lg bg-dark">
-                <ul class="nav ">
-                    <li class="nav-item">
-                        <a href="{% url 'inicio' %}" class="nav-link active text-center">
-                            <i class="bi bi-house-door-fill "></i>
-                            <h6>inicio</h6>
-                        </a>
-                        
+    <nav class="navbar navbar-expand-lg bg-dark">
+        <div class="container-fluid">
+            <div class="collapse navbar-collapse">
+                <ul class="navbar-nav  col-md-12 ">
+                    <li class="col nav-item text-center sb_hover">
+                        <i class="bi bi-house-door-fill text-light"></i>
+                        <a href="{% url 'inicio' %}" class="text-light nav-link ">Inicio</a>
                     </li>
-                    <li class="nav-item">
-                        <a href="{% url 'login_page' %}" class="nav-link text-center">
-                        <i class="bi bi-person-fill"></i>
-                        <h6>Iniciar sesion</h6>
-                        </a>
-                        
+                    <li class="col nav-item sb_hover text-center">
+                        <i class="bi bi-person-fill text-light"></i>
+                        <a href="{% url 'login_page' %}" class=" text-light nav-link active">Iniciar Sesión</a>
                     </li>
-                    <li class="nav-item">
-                        <a href="{% url 'singUp' %}" class="nav-link text-center">
-                            <i class="bi bi-person-fill-add"></i>
-                            <h6>Registro</h6>
-                        </a>
-                        
+                    <li class="col nav-item sb_hover text-center">
+                        <i class="bi bi-person-fill text-light"></i>
+                        <a href="{% url 'singUp' %}" class=" text-light nav-link">Registrate</a>
                     </li>
                 </ul>
-            </nav>    
+            </div>
+
         </div>
+    </nav>
+    <!-- <header class="bg-blue pb-md-5 mb-md-5 mt-5">
         <div class="text-center text-light">
-            <h1>ProyectoSinergia</h1>
+            <h1>Proyecto Sinergia</h1>
             <p>Colaboración y Sinergia entre estudiantes y empresas</p>
         </div>
-    </header>
+    </header> -->
     <main class=" bg-grey text-light py-5">
         <section class="container">
+            <div class="text-center">
+                <img src="media/assets/logo.png" alt="Tu Logotipo" class="logo-img">
+            </div>
             <h2>¿Quienes somos?</h2>
             <article class="mt-md-5">
                 <h5>Misión</h5>
-                <p>Facilitar la conexión entre estudiantes preuniversitarios, universitarios y empresas, proporcionando una plataforma web de alta calidad que permita a los estudiantes mostrar sus proyectos académicos y habilidades, mientras que las empresas pueden encontrar talento joven y proyectos que se adaptan a sus necesidades. Nuestra misión es impulsar el crecimiento profesional y académico al brindar un espacio donde la innovación, la colaboración y la oportunidad se encuentren.</p>
+                <p>En Sinergia, nos dedicamos apasionadamente a fomentar la conexión entre jóvenes estudiantes, universitarios y empresas destacadas. A través de nuestra plataforma web premium, proporcionamos un espacio dinámico donde los estudiantes pueden mostrar sus proyectos académicos y habilidades excepcionales. Al mismo tiempo, las empresas pueden descubrir talentos jóvenes y proyectos innovadores que se alinean perfectamente con sus necesidades. Nuestra misión es impulsar el crecimiento profesional y académico al brindar un entorno donde la innovación, la colaboración y las oportunidades se fusionan con la excelencia.</p>
             </article>
             <article class="mt-md-5">
                 <h5>Visión</h5>
-                <p>Ser la plataforma líder a nivel nacional en la unión de estudiantes y empresas para la colaboración en proyectos académicos y profesionales. Queremos ser reconocidos por nuestro compromiso con la excelencia, la calidad de las conexiones que creamos y el impacto positivo que generamos en la educación y la industria. Nuestra visión es construir un mundo donde cada estudiante tenga la oportunidad de aplicar su conocimiento en proyectos significativos y donde las empresas encuentren el talento que necesitan para prosperar.
-                </p>
+                <p>Nuestra visión en Sinergia es convertirnos en la plataforma líder a nivel nacional que reúna a estudiantes y empresas para colaborar en proyectos académicos y profesionales de vanguardia. Nos esforzamos por ser reconocidos por nuestro compromiso inquebrantable con la excelencia y la calidad de las conexiones que forjamos. Aspiramos a dejar una huella significativa en el mundo de la educación y la industria, ofreciendo oportunidades sin igual para que cada estudiante canalice su conocimiento hacia proyectos trascendentales. ¡En Sinergia, las empresas encuentran el talento que necesitan para prosperar!</p>
             </article>
             <article class="mt-md-5">
                 <h5>Valores</h5>
-                <p>Integridad, Innovación, Colaboración, Excelencia y Oportunidad.</p>
+                <p>En Sinergia, nos guiamos por nuestros valores fundamentales: Integridad, Innovación, Colaboración, Excelencia y Oportunidad. Estos pilares están arraigados en todo lo que hacemos, impulsándonos a crear un entorno donde la integridad es la base, la innovación es la fuerza motriz, la colaboración es la clave del éxito, la excelencia es la norma y la oportunidad es la piedra angular de nuestro propósito.</p>
             </article>
             
         </section>
     </main>
     <footer class="bg-blue text-light text-center hfooter-sb">
-        <p class="pt-md-4">Copyright ©Grupo Proyecto 2</p>
+        <p class="pt-md-4">Copyright 2023 Sinergia - Todos los derechos reservados</p>
     </footer>
 </body>
 

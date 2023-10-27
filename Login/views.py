@@ -22,15 +22,17 @@ def LoginPage(request):
         user = authenticate(request,username=request.POST['userName'],password=request.POST['password'])
         if user is None:
             return render(request,'Pages/Login.html',{
-                'error': 'usuario o contraseña es incorrecto'
+                'error': 'Usuario o Contraseña es Incorrecto!'
             })
         else:
             login(request,user)
             return redirect('home_page')
 
 def homePage(request):
-    infoUsuario = InfoUsuario.objects.filter(IdUsuario=request.user.id).values('IdUsuario', 'FotoPerfil')
-    return render(request,'Pages/home.html',{'info': infoUsuario[0]})
+    infoUsuario = InfoUsuario.objects.filter(IdUsuario=request.user.id).values('IdUsuario', 'IdTipoUsuario', 'FotoPerfil')
+    tipoUsuario = TipoUsuario.objects.filter(IdTipoUsuario=infoUsuario[0]['IdTipoUsuario']).values('IdTipoUsuario', 'Nombre')
+
+    return render(request,'Pages/home.html',{'info': infoUsuario[0], 'tipo': tipoUsuario[0]})
 
 def SingUpPage(request):
     if request.method =='GET':
@@ -74,10 +76,10 @@ def SingUpPage(request):
                 print(e)
                 traceback.print_exc()
                 return render(request, 'Pages/SignUp.html', {
-                    "error": "Usuario existente en la BDD"
+                    "error": "Usuario ya Registrado!"
                 })
         return render(request,'Pages/SignUp.html',{
-            "error": "Contraseñas no coinciden"
+            "error": "Las Contraseñas no Coinciden!"
         })
 
 def projectPage(request):

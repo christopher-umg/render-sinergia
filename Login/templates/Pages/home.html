@@ -35,46 +35,42 @@
                     </li>
                     <li class="col nav-item sb_hover text-center">
                         <i class="bi bi-bag-plus text-light"></i>
-                        <a href="{% url 'jobs' %}" class=" text-light nav-link">Bolsa de trabajo</a>
+                        <a href="{% url 'jobs' %}" class=" text-light nav-link">Bolsa de Trabajo</a>
                     </li>
                     <li class="col nav-item sb_hover text-center">
                         <i class="bi bi-info-circle-fill text-light"></i>
-                        <a href="{% url 'help' %}" class=" text-light nav-link">Espacio de apoyo</a>
+                        <a href="{% url 'help' %}" class=" text-light nav-link">Espacio de Apoyo</a>
                     </li>
                     <li class="col nav-item sb_hover text-center">
                         <i class="bi bi-box-arrow-right text-light"></i>
-                        <a href="{% url 'logOut' %}" class=" text-light nav-link">Cerrar sesión</a>
+                        <a href="{% url 'logOut' %}" class=" text-light nav-link">Cerrar Sesión</a>
                     </li>
                 </ul>
             </div>
-
         </div>
-
     </nav>
     <header class="text-light text-center mt-md-5 mt-sm-5">
-        <h1>Bienvenido {{ request.user.first_name }}</h1>
-        <p>Este es tu perfil en donde encontrarás las interacciones que te ofrece este sitio</p>
+        <h1>¡Bienvenid@!</h1>
+        <p>Explora un mundo de oportunidades educativas y profesionales. Descubre proyectos, amplía tus habilidades y conéctate con una comunidad de mentes brillantes</p>
     </header>
     <div class="ms-md-3 d-flex">
-            <svg xmlns="http://www.w3.org/2000/svg"  fill="currentColor" class="bi bi-person-circle bg-light rounded-circle sb-image" viewBox="0 0 16 16">
+            <!-- <svg xmlns="http://www.w3.org/2000/svg"  fill="currentColor" class="bi bi-person-circle bg-light rounded-circle sb-image" viewBox="0 0 16 16">
             <path d="M11 6a3 3 0 1 1-6 0 3 3 0 0 1 6 0z"/>
             <path fill-rule="evenodd" d="M0 8a8 8 0 1 1 16 0A8 8 0 0 1 0 8zm8-7a7 7 0 0 0-5.468 11.37C3.242 11.226 4.805 10 8 10s4.757 1.225 5.468 2.37A7 7 0 0 0 8 1z"/>
-            </svg>
+            </svg> -->
 
             <img src="{{ '/media/'|add:info.FotoPerfil }}" alt="" class="bi bi-person-circle bg-light rounded-circle sb-image" viewBox="0 0 16 16">
 
             <div class="text-light sb-text-nameRol">
-                <p class="">{{ request.user.first_name }} {{ request.user.last_name }}
-                    <br>Estudiante
-                </p>
+                <h2>{{ request.user.first_name }} {{ request.user.last_name }}
+                    <br>{{ tipo.Nombre }}
+                </h2>
             </div>
     </div>
-    
-    
     <main class="sb-bg-grey container-fluid pt-md-1 pt-xxl-5 pt-xl-5 pt-lg-5 pt-md-5 pt-sm-5">
-        <section class="container ">
+        <section class="container">
             <article class="mt-md-5">
-                <p class="border-bottom text-light">Mis Proyectos (Estudiante)/Bolsa de empleo (Emmpresa)</p>
+                <h3 class="border-bottom text-light">Mis Proyectos</h3>
                 <button type="submit" class="btn btn-secondary container-fluid row p-md-0 mb-md-4 ms-md-1 p-sm-0">
                     <div class="d-flex px-md-0 align-items-center ps-sm-0">
                         <div class="bg-light px-md-3 px-sm-3">
@@ -82,251 +78,55 @@
                                 <i class="sb-bi bi-tag text-dark"></i>
                             </div>
                         </div>
-                        <p class="text-light mb-md-0 p-md-0 ms-md-2 ms-sm-2">Publicar nuevo empleo</p>
+                        <p class="text-light mb-md-0 p-md-0 ms-md-2 ms-sm-2">Publicar Nuevo Proyecto</p>
                     </div>
                 </button>
                 <div class="row row-cols-1 rows-cols-md-2 row-cols-xl-3 rows-cols-lg-2 g-4 mt-2">
                     <div class="col">
                         <div class="card ">
                             <div class="card-header">
-                                <h6 class="card-title">Proyectos</h6>
-                                <P>Categoría</P>
+                                <h6 class="card-title">PABCD</h6>
+                                <P>Machine Learning</p>
                             </div>
                             <div class="card-body">
-                                <img src="s" alt="img1">
                                 <p class="card-text">Lorem ipsum dolor sit amet consectetur adipisicing elit. Nobis
                                     vitae quasi distinctio architecto pariatur ipsa soluta maiores minus quia quisquam,
                                     rerum possimus voluptatem provident ullam illo eaque incidunt tempore excepturi.</p>
                             </div>
                             <div class="card-footer">
-                                <button type="button"
-                                    class="btn btn-light border border-secondary sb-morado">Eliminar</button>
-                                <button type="button"
-                                    class="btn btn-light border border-secondary sb-morado">Actualizar</button>
-
+                                <a href="#" target="_blank" class="btn btn-light border border-secondary sb-morado">Eliminar</a>
                             </div>
                         </div>
                     </div>
-                    <div class="col">
-                        <div class="card ">
-                            <div class="card-header">
-                                <h6 class="card-title">Proyectos</h6>
-                                <P>Categoría</P>
-                            </div>
-                            <div class="card-body">
-                                <img src="s" alt="img1">
-                                <p class="card-text">Lorem ipsum dolor sit amet consectetur adipisicing elit. Nobis
-                                    vitae quasi distinctio architecto pariatur ipsa soluta maiores minus quia quisquam,
-                                    rerum possimus voluptatem provident ullam illo eaque incidunt tempore excepturi.</p>
-                            </div>
-                            <div class="card-footer">
-                                <button type="button"
-                                    class="btn btn-light border border-secondary sb-morado">Eliminar</button>
-                                <button type="button"
-                                    class="btn btn-light border border-secondary sb-morado">Actualizar</button>
-
-                            </div>
-                        </div>
-                    </div>
-                    <div class="col">
-                        <div class="card ">
-                            <div class="card-header">
-                                <h6 class="card-title">Proyectos</h6>
-                                <P>Categoría</P>
-                            </div>
-                            <div class="card-body">
-                                <img src="s" alt="img1">
-                                <p class="card-text">Lorem ipsum dolor sit amet consectetur adipisicing elit. Nobis
-                                    vitae quasi distinctio architecto pariatur ipsa soluta maiores minus quia quisquam,
-                                    rerum possimus voluptatem provident ullam illo eaque incidunt tempore excepturi.</p>
-                            </div>
-                            <div class="card-footer">
-                                <button type="button"
-                                    class="btn btn-light border border-secondary sb-morado">Eliminar</button>
-                                <button type="button"
-                                    class="btn btn-light border border-secondary sb-morado">Actualizar</button>
-
-                            </div>
-                        </div>
-                    </div>
-                    <div class="col">
-                        <div class="card ">
-                            <div class="card-header">
-                                <h6 class="card-title">Proyectos</h6>
-                                <P>Categoría</P>
-                            </div>
-                            <div class="card-body">
-                                <img src="s" alt="img1">
-                                <p class="card-text">Lorem ipsum dolor sit amet consectetur adipisicing elit. Nobis
-                                    vitae quasi distinctio architecto pariatur ipsa soluta maiores minus quia quisquam,
-                                    rerum possimus voluptatem provident ullam illo eaque incidunt tempore excepturi.</p>
-                            </div>
-                            <div class="card-footer">
-                                <button type="button"
-                                    class="btn btn-light border border-secondary sb-morado">Eliminar</button>
-                                <button type="button"
-                                    class="btn btn-light border border-secondary sb-morado">Actualizar</button>
-
-                            </div>
-                        </div>
-                    </div>
-                    <div class="col"> 
-                        <div class="card ">
-                            <div class="card-header">
-                                <h6 class="card-title">Proyectos</h6>
-                                <P>Categoría</P>
-                            </div>
-                            <div class="card-body">
-                                <img src="s" alt="img1">
-                                <p class="card-text">Lorem ipsum dolor sit amet consectetur adipisicing elit. Nobis
-                                    vitae quasi distinctio architecto pariatur ipsa soluta maiores minus quia quisquam,
-                                    rerum possimus voluptatem provident ullam illo eaque incidunt tempore excepturi.</p>
-                            </div>
-                            <div class="card-footer">
-                                <button type="button"
-                                    class="btn btn-light border border-secondary sb-morado">Eliminar</button>
-                                <button type="button"
-                                    class="btn btn-light border border-secondary sb-morado">Actualizar</button>
-
-                            </div>
-                        </div>
-                    </div>
-
                 </div>
             </article>
 
-            <article class="mt-md-5 border-bottom border-light mb-md-5">
-                <p class="border-bottom text-light">Proyectos guardados/Postulaciones</p>
-                <div class="row row-cols-1 rows-cols-md-2 row-cols-xl-3 rows-cols-lg-2 g-4 mt-2">
-                    <div class="col">
-                        <div class="card ">
-                            <div class="card-header">
-                                <h6 class="card-title">Proyectos</h6>
-                                <P>Categoría</P>
-                            </div>
-                            <div class="card-body">
-                                <img src="s" alt="img1">
-                                <p class="card-text">Lorem ipsum dolor sit amet consectetur adipisicing elit. Nobis
-                                    vitae quasi distinctio architecto pariatur ipsa soluta maiores minus quia quisquam,
-                                    rerum possimus voluptatem provident ullam illo eaque incidunt tempore excepturi.</p>
-                            </div>
-                            <div class="card-footer">
-                                <button type="button"
-                                    class="btn btn-light border border-secondary sb-morado">Eliminar</button>
-                                <button type="button"
-                                    class="btn btn-light border border-secondary sb-morado">Actualizar</button>
+            <br><br>
 
-                            </div>
-                        </div>
+            <h3 class="border-bottom text-light">Contáctanos</h3>
+            <br><br>
+
+            <div class="d-flex justify-content-center">
+                <section class="col-md-5">
+                    <div class="input-group mb-3">
+                        <span class="input-group-text" id="inputGroup-sizing-default">Email</span>
+                        <input type="text" class="form-control" aria-label="Sizing example input" aria-describedby="inputGroup-sizing-default">
                     </div>
-                    <div class="col">
-                        <div class="card ">
-                            <div class="card-header">
-                                <h6 class="card-title">Proyectos</h6>
-                                <P>Categoría</P>
-                            </div>
-                            <div class="card-body">
-                                <img src="s" alt="img1">
-                                <p class="card-text">Lorem ipsum dolor sit amet consectetur adipisicing elit. Nobis
-                                    vitae quasi distinctio architecto pariatur ipsa soluta maiores minus quia quisquam,
-                                    rerum possimus voluptatem provident ullam illo eaque incidunt tempore excepturi.</p>
-                            </div>
-                            <div class="card-footer">
-                                <button type="button"
-                                    class="btn btn-light border border-secondary sb-morado">Eliminar</button>
-                                <button type="button"
-                                    class="btn btn-light border border-secondary sb-morado">Actualizar</button>
-
-                            </div>
-                        </div>
+                    <div class="input-group mb-3">
+                        <span class="input-group-text" id="inputGroup-sizing-default">Teléfono</span>
+                        <input type="text" class="form-control" aria-label="Sizing example input" aria-describedby="inputGroup-sizing-default">
                     </div>
-                    <div class="col">
-                        <div class="card ">
-                            <div class="card-header">
-                                <h6 class="card-title">Proyectos</h6>
-                                <P>Categoría</P>
-                            </div>
-                            <div class="card-body">
-                                <img src="s" alt="img1">
-                                <p class="card-text">Lorem ipsum dolor sit amet consectetur adipisicing elit. Nobis
-                                    vitae quasi distinctio architecto pariatur ipsa soluta maiores minus quia quisquam,
-                                    rerum possimus voluptatem provident ullam illo eaque incidunt tempore excepturi.</p>
-                            </div>
-                            <div class="card-footer">
-                                <button type="button"
-                                    class="btn btn-light border border-secondary sb-morado">Eliminar</button>
-                                <button type="button"
-                                    class="btn btn-light border border-secondary sb-morado">Actualizar</button>
-
-                            </div>
-                        </div>
+                    <div class="d-flex justify-content-end">
+                        <button class="btn btn-light border border-secondary sb-morado mb-md-5">Enviar</button>
                     </div>
-                    <div class="col">
-                        <div class="card ">
-                            <div class="card-header">
-                                <h6 class="card-title">Proyectos</h6>
-                                <P>Categoría</P>
-                            </div>
-                            <div class="card-body">
-                                <img src="s" alt="img1">
-                                <p class="card-text">Lorem ipsum dolor sit amet consectetur adipisicing elit. Nobis
-                                    vitae quasi distinctio architecto pariatur ipsa soluta maiores minus quia quisquam,
-                                    rerum possimus voluptatem provident ullam illo eaque incidunt tempore excepturi.</p>
-                            </div>
-                            <div class="card-footer">
-                                <button type="button"
-                                    class="btn btn-light border border-secondary sb-morado">Eliminar</button>
-                                <button type="button"
-                                    class="btn btn-light border border-secondary sb-morado">Actualizar</button>
-
-                            </div>
-                        </div>
-                    </div>
-                    <div class="col"> 
-                        <div class="card ">
-                            <div class="card-header">
-                                <h6 class="card-title">Proyectos</h6>
-                                <P>Categoría</P>
-                            </div>
-                            <div class="card-body">
-                                <img src="s" alt="img1">
-                                <p class="card-text">Lorem ipsum dolor sit amet consectetur adipisicing elit. Nobis
-                                    vitae quasi distinctio architecto pariatur ipsa soluta maiores minus quia quisquam,
-                                    rerum possimus voluptatem provident ullam illo eaque incidunt tempore excepturi.</p>
-                            </div>
-                            <div class="card-footer">
-                                <button type="button"
-                                    class="btn btn-light border border-secondary sb-morado">Eliminar</button>
-                                <button type="button"
-                                    class="btn btn-light border border-secondary sb-morado">Actualizar</button>
-
-                            </div>
-                        </div>
-                    </div>
-
-                </div>
-                <br/>
-                <br/>
-            </article>
-            <section class="col-md-5">
-                <h6 class="text-light">Contácto</h6>
-                <div class="input-group mb-3">
-                    <span class="input-group-text" id="inputGroup-sizing-default">Correo electrónico</span>
-                    <input type="text" class="form-control" aria-label="Sizing example input" aria-describedby="inputGroup-sizing-default">
-                  </div>
-                <div class="input-group mb-3">
-                    <span class="input-group-text" id="inputGroup-sizing-default">Teléfono</span>
-                    <input type="text" class="form-control" aria-label="Sizing example input" aria-describedby="inputGroup-sizing-default">
-                  </div>
-                  <div class="d-flex justify-content-between">
-                    <button class="btn btn-light border border-secondary sb-morado mb-md-5">Cargar CV</button>
-                    <button class="btn btn-light border border-secondary sb-morado mb-md-5">Descargar plantilla de CV</button>
-                  </div>
-            </section>
+                </section>
+            </div>
+            
+            
         </section>
     </main>
     <footer class="bg-blue text-light text-center hfooter-sb">
-        <p class="pt-md-4">Copyright ©Grupo Proyecto 2</p>
+        <p class="pt-md-4">Copyright 2023 Sinergia - Todos los derechos reservados</p>
     </footer>
 </body>
 

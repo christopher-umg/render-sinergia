@@ -18,93 +18,38 @@
 </head>
 
 <body>
-
-    <header class="bg-blue pb-md-5">
-        <div class="d-flex flex-row-reverse">
-            <nav class="navbar navbar-expand-lg bg-dark">
-                <ul class="nav ">
-                    <li class="nav-item">
-                        <a href="{% url 'inicio' %}" class="nav-link active text-center">
-                            <i class="bi bi-house-door-fill "></i>
-                            <h6>inicio</h6>
-                        </a>
-
+    <nav class="navbar navbar-expand-lg bg-dark">
+        <div class="container-fluid">
+            <div class="collapse navbar-collapse">
+                <ul class="navbar-nav  col-md-12 ">
+                    <li class="col nav-item text-center sb_hover">
+                        <i class="bi bi-house-door-fill text-light"></i>
+                        <a href="{% url 'inicio' %}" class="text-light nav-link ">Inicio</a>
                     </li>
-                    <li class="nav-item">
-                        <a href="{% url 'login_page' %}" class="nav-link text-center">
-                            <i class="bi bi-person-fill"></i>
-                            <h6>Iniciar sesion</h6>
-                        </a>
-
+                    <li class="col nav-item sb_hover text-center">
+                        <i class="bi bi-person-fill text-light"></i>
+                        <a href="{% url 'login_page' %}" class=" text-light nav-link active">Iniciar Sesión</a>
                     </li>
-                    <li class="nav-item">
-                        <a href="{% url 'singUp' %}" class="nav-link text-center">
-                            <i class="bi bi-person-fill-add"></i>
-                            <h6>Registro</h6>
-                        </a>
-
+                    <li class="col nav-item sb_hover text-center">
+                        <i class="bi bi-person-fill text-light"></i>
+                        <a href="{% url 'singUp' %}" class=" text-light nav-link">Registrate</a>
                     </li>
                 </ul>
-            </nav>
+            </div>
+
         </div>
+    </nav>
+    <header class="bg-blue pb-md-5 mt-5">
         <div class="text-center text-light">
-            <h1>ProyectoSinergia</h1>
-            <p>Colaboración y sinergia entre estudiantes y empresas</p>
+            <h1>Proyecto Sinergia</h1>
+            <p>Colaboración y Sinergia entre Estudiantes y Empresas.</p>
         </div>
     </header>
     <main class="bg-grey py-5">
         <div class="wrapper">
+            <h2 class="text-center">Registrate!</h2>
             <form class="p-3 mt-3" method="post" enctype="multipart/form-data">
                 {% csrf_token %}
-                <div class="d-flex justify-content-between mb-md-5 ">
-                    <label class="pt-md-2 me-md-4" for="tipo_usuario">Tipo de Estudiante:</label>
-                    <select class="dropdown" name="tipo_usuario" id="tipo_usuario" required>
-                        <option value="">Selecciona un tipo</option>
-                        {% for tipo_usuario in tipos_usuarios %}
-                        <option value="{{ tipo_usuario.IdTipoUsuario }}">{{tipo_usuario.Nombre}}</option>
-                        {% endfor %}
-                    </select>
-                </div>
-
-                <div class="d-flex justify-content-between mb-md-5 ">
-                    <label class="pt-md-2 me-md-4" for="institucion_educativa">Institucion
-                        Educativa:</label>
-                    <select class="dropdown" name="institucion_educativa" id="institucion_educativa" required>
-                        <option value="">Selecciona una institucion</option>
-                        {% for institucion_educativa in instituciones_educativas %}
-                        <option value="{{ institucion_educativa.IdInstitucionEducativa }}">
-                            {{institucion_educativa.Nombre}}</option>
-                        {% endfor %}
-                    </select>
-                </div>
-
-                <div class="d-flex justify-content-between mb-md-5 ">
-                    <label class="pt-md-2 me-md-4" for="pais">País:</label>
-                    <select class="dropdown" name="pais" id="pais" required>
-                        <option value="">Selecciona un país</option>
-                        <option value="1">Guatemala</option>
-                        <option value="2">El Salvador</option>
-                        <option value="3">Honduras</option>
-                        <option value="4">Nicaragua</option>
-                        <option value="5">Costa Rica</option>
-                        <option value="6">Panamá</option>
-                    </select>
-                </div>
-
-                <div class="d-flex justify-content-between mb-md-5 ">
-                    <label class="pt-md-2 me-md-4" for="departamento">Departamento:</label>
-                    <select class="dropdown" name="departamento" id="departamento" required disabled>
-                        <option value="">Selecciona un país primero</option>
-                    </select>
-                </div>
-
-                <div class="d-flex justify-content-between mb-md-5 ">
-                    <label class="pt-md-2 me-md-4" for="municipio">Municipio:</label>
-                    <select class="dropdown" name="municipio" id="municipio" required disabled>
-                        <option value="">Selecciona un departamento primero</option>
-                    </select>
-                </div>
-
                 <div class="d-flex">
                     <div class="me-md-4">
                         <label for="first_name">Nombre:</label>
@@ -168,6 +113,55 @@
                     </div>
                 </div>
 
+                <div class="d-flex justify-content-between mb-md-5 ">
+                    <label class="pt-md-2 me-md-4" for="tipo_usuario">Tipo de Estudiante:</label>
+                    <select class="dropdown" name="tipo_usuario" id="tipo_usuario" required>
+                        <option value="">Selecciona un tipo</option>
+                        {% for tipo_usuario in tipos_usuarios %}
+                        <option value="{{ tipo_usuario.IdTipoUsuario }}">{{tipo_usuario.Nombre}}</option>
+                        {% endfor %}
+                    </select>
+                </div>
+
+                <div class="d-flex justify-content-between mb-md-5 ">
+                    <label class="pt-md-2 me-md-4" for="institucion_educativa">Institucion
+                        Educativa:</label>
+                    <select class="dropdown" name="institucion_educativa" id="institucion_educativa" required>
+                        <option value="">Selecciona una institucion</option>
+                        {% for institucion_educativa in instituciones_educativas %}
+                        <option value="{{ institucion_educativa.IdInstitucionEducativa }}">
+                            {{institucion_educativa.Nombre}}</option>
+                        {% endfor %}
+                    </select>
+                </div>
+
+                <div class="d-flex justify-content-between mb-md-5 ">
+                    <label class="pt-md-2 me-md-4" for="pais">País:</label>
+                    <select class="dropdown" name="pais" id="pais" required>
+                        <option value="">Selecciona un país</option>
+                        <option value="1">Guatemala</option>
+                        <!-- <option value="2">El Salvador</option>
+                        <option value="3">Honduras</option>
+                        <option value="4">Nicaragua</option>
+                        <option value="5">Costa Rica</option>
+                        <option value="6">Panamá</option> -->
+                    </select>
+                </div>
+
+                <div class="d-flex justify-content-between mb-md-5 ">
+                    <label class="pt-md-2 me-md-4" for="departamento">Departamento:</label>
+                    <select class="dropdown" name="departamento" id="departamento" required disabled>
+                        <option value="">Selecciona un país primero</option>
+                    </select>
+                </div>
+
+                <div class="d-flex justify-content-between mb-md-5 ">
+                    <label class="pt-md-2 me-md-4" for="municipio">Municipio:</label>
+                    <select class="dropdown" name="municipio" id="municipio" required disabled>
+                        <option value="">Selecciona un departamento primero</option>
+                    </select>
+                </div>
+
                 <label for="user_name">Usuario</label>
                 <div class="form-field d-flex align-items-center">
                     <span class="far fa-user"></span>
@@ -192,7 +186,7 @@
         </div>
     </main>
     <footer class="bg-blue text-light text-center hfooter-sb">
-        <p class="pt-md-4">Copyright ©Grupo Proyecto 2</p>
+        <p class="pt-md-4">Copyright 2023 Sinergia - Todos los derechos reservados</p>
     </footer>
 </body>
 <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.6/dist/umd/popper.min.js"
