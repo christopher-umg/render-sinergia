@@ -1,6 +1,6 @@
 from django.db import models
 from django.contrib.auth.models import User
-from generales.models import TipoUsuario, Pais, Departamento, Municipio, InstitucionEducativa, Empresa, CategoriaProyectos
+from generales.models import TipoUsuario, Pais, Departamento, Municipio, InstitucionEducativa, Empresa, CategoriaProyectos, CategoriasEmpleos, Moneda
 import os
 import uuid
 from django.utils.text import get_valid_filename
@@ -85,3 +85,32 @@ class Proyecto(models.Model):
 
     class Meta:
         db_table = 'Proyecto'
+
+class PostulacionEmpleo(models.Model):
+    IdPostulacionEmpleo = models.AutoField(primary_key=True, db_column='IdPostulacionEmpleo')
+    IdPais = models.ForeignKey(Pais, on_delete=models.CASCADE, db_column='IdPais')
+    IdDepartamento = models.ForeignKey(Departamento, on_delete=models.CASCADE, db_column='IdDepartamento')
+    IdMunicipio = models.ForeignKey(Municipio, on_delete=models.CASCADE, db_column='IdMunicipio')
+    IdEmpresa = models.ForeignKey(Empresa, on_delete=models.CASCADE, db_column='IdEmpresa')
+    IdCategoriasEmpleos = models.ForeignKey(CategoriasEmpleos, on_delete=models.CASCADE, db_column='IdCategoriasEmpleos')
+    Estado = models.BooleanField(default=False)
+    Postulacion = models.CharField(max_length=200)
+    Descripcion = models.TextField()
+    IdMoneda = models.ForeignKey(Moneda, on_delete=models.CASCADE, db_column='IdMoneda')
+    OfertaSalarialI = models.DecimalField(max_digits=10, decimal_places=2)
+    OfertaSalarialF = models.DecimalField(max_digits=10, decimal_places=2)
+    RequisitosExtra = models.FileField(upload_to='requisitos-extra/', null=True, blank=True)
+    FechaPublicacion = models.DateTimeField(auto_now_add=True)
+    created_at = models.DateTimeField(auto_now_add=True)
+    updated_at = models.DateTimeField(auto_now=True)
+
+    def save(self, *args, **kwargs):
+        if not self.IdPostulacionEmpleo:
+            self.RequisitosExtra.name = generar_nombre_uniq('requisitos-extra//', self, self.RequisitosExtra.name)
+        super(PostulacionEmpleo, self).save(*args, **kwargs)
+
+    def __str__(self):
+        return self.Postulacion
+
+    class Meta:
+        db_table = 'PostulacionEmpleo'

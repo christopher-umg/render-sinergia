@@ -1,8 +1,10 @@
 from rest_framework import viewsets
 from rest_framework.response import Response
+from rest_framework.authentication import SessionAuthentication, BasicAuthentication
+from rest_framework.permissions import IsAuthenticated
 from .models import Pais, Departamento, Municipio, SectorEmpresarial, TipoUsuario, TipoActividadUsuario, Moneda, CategoriasEmpleos, CategoriaProyectos, Empresa, InstitucionEducativa
-from Login.models import Proyecto
-from .serializers import PaisSerializer, DepartamentoSerializer, MunicipioSerializer, SectorEmpresarialSerializer, TipoUsuarioSerializer, TipoActividadUsuarioSerializer, MonedaSerializer, CategoriasEmpleosSerializer, CategoriaProyectosSerializer, EmpresaSerializer, InstitucionEducativaSerializer, ProyectoSerializer
+from Login.models import Proyecto, PostulacionEmpleo
+from .serializers import PaisSerializer, DepartamentoSerializer, MunicipioSerializer, SectorEmpresarialSerializer, TipoUsuarioSerializer, TipoActividadUsuarioSerializer, MonedaSerializer, CategoriasEmpleosSerializer, CategoriaProyectosSerializer, EmpresaSerializer, InstitucionEducativaSerializer, ProyectoSerializer, PostulacionEmpleoSerializer
 
 class PaisViewSet(viewsets.ModelViewSet):
     queryset = Pais.objects.all()
@@ -67,5 +69,13 @@ class InstitucionEducativaViewSet(viewsets.ModelViewSet):
     serializer_class = InstitucionEducativaSerializer
 
 class ProyectoViewSet(viewsets.ModelViewSet):
-    queryset = Proyecto.objects.filter(Estado=1)
+    authentication_classes = [SessionAuthentication, BasicAuthentication]
+    permission_classes = [IsAuthenticated]
+    queryset = Proyecto.objects.filter(IdProyecto=0)
     serializer_class = ProyectoSerializer
+
+class PostulacionEmpleoViewSet(viewsets.ModelViewSet):
+    authentication_classes = [SessionAuthentication, BasicAuthentication]
+    permission_classes = [IsAuthenticated]
+    queryset = PostulacionEmpleo.objects.filter(IdPostulacionEmpleo=0)
+    serializer_class = PostulacionEmpleoSerializer

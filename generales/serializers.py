@@ -1,6 +1,6 @@
 from rest_framework import serializers
 from .models import Pais, Departamento, Municipio, SectorEmpresarial, TipoUsuario, TipoActividadUsuario, Moneda, CategoriasEmpleos, CategoriaProyectos, Empresa, InstitucionEducativa
-from Login.models import Proyecto
+from Login.models import Proyecto, PostulacionEmpleo
 
 class PaisSerializer(serializers.ModelSerializer):
     class Meta:
@@ -60,4 +60,9 @@ class InstitucionEducativaSerializer(serializers.ModelSerializer):
 class ProyectoSerializer(serializers.ModelSerializer):
     class Meta:
         model = Proyecto
+        fields = '__all__'
+
+class PostulacionEmpleoSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = PostulacionEmpleo
         fields = '__all__'

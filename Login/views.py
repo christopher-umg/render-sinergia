@@ -5,7 +5,7 @@ from django.http import HttpResponse
 from django.contrib.auth.models import User
 from django.contrib.auth.forms import AuthenticationForm
 from django.contrib.auth import login, logout, authenticate
-from .models import InfoUsuario, Proyecto
+from .models import InfoUsuario, Proyecto, PostulacionEmpleo
 from generales.models import TipoUsuario, Pais, Departamento, Municipio, InstitucionEducativa, Empresa
 import traceback
 
@@ -29,11 +29,12 @@ def LoginPage(request):
             return redirect('home_page')
 
 def homePage(request):
-    infoUsuario = InfoUsuario.objects.filter(IdUsuario=request.user.id).values('IdUsuario', 'IdTipoUsuario', 'FotoPerfil')
+    infoUsuario = InfoUsuario.objects.filter(IdUsuario=request.user.id).values('IdUsuario', 'IdEmpresa', 'IdTipoUsuario', 'FotoPerfil')
     tipoUsuario = TipoUsuario.objects.filter(IdTipoUsuario=infoUsuario[0]['IdTipoUsuario']).values('IdTipoUsuario', 'Nombre')
     proyectos = Proyecto.objects.filter(IdUsuario=request.user.id,Estado=True).select_related('IdCategoriaProyecto')
+    empleos = PostulacionEmpleo.objects.filter(IdEmpresa=infoUsuario[0]['IdEmpresa'],Estado=True).select_related('IdPais', 'IdDepartamento', 'IdMunicipio', 'IdEmpresa', 'IdCategoriasEmpleos', 'IdMoneda')
 
-    return render(request,'Pages/home.html',{'info': infoUsuario[0], 'tipo': tipoUsuario[0], 'proyectos': proyectos})
+    return render(request,'Pages/home.html',{'info': infoUsuario[0], 'tipo': tipoUsuario[0], 'proyectos': proyectos, 'empleos': empleos})
 
 def SingUpPage(request):
     if request.method =='GET':
@@ -93,8 +94,9 @@ def projectPage(request):
 def jobsPage(request):
     infoUsuario = InfoUsuario.objects.filter(IdUsuario=request.user.id).values('IdUsuario', 'IdTipoUsuario', 'FotoPerfil')
     tipoUsuario = TipoUsuario.objects.filter(IdTipoUsuario=infoUsuario[0]['IdTipoUsuario']).values('IdTipoUsuario', 'Nombre')
+    empleos = PostulacionEmpleo.objects.filter(Estado=True).select_related('IdPais', 'IdDepartamento', 'IdMunicipio', 'IdEmpresa', 'IdCategoriasEmpleos', 'IdMoneda')
 
-    return render(request,'Pages/BolsaTrabajo.html',{'info': infoUsuario[0], 'tipo': tipoUsuario[0]})
+    return render(request,'Pages/BolsaTrabajo.html',{'info': infoUsuario[0], 'tipo': tipoUsuario[0], 'empleos': empleos})
 
 def helpPage(request):
     infoUsuario = InfoUsuario.objects.filter(IdUsuario=request.user.id).values('IdUsuario', 'IdTipoUsuario', 'FotoPerfil')

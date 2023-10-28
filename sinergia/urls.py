@@ -42,8 +42,8 @@ router.register(r'users', UserViewSet)
 urlpatterns = [
     path('admin/', admin.site.urls),
     # Rutas api
-    path('api-users/', include(router.urls)),
-    path('api-auth/', include('rest_framework.urls', namespace='rest_framework')),
+    # path('api-users/', include(router.urls)),
+    # path('api-auth/', include('rest_framework.urls', namespace='rest_framework')),
     path('api-generales/', include('generales.urls')),
     # Rutas front
     path('', views.helloWorld,name="inicio"),

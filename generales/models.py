@@ -118,6 +118,7 @@ class Empresa(models.Model):
     IdMunicipio = models.ForeignKey(Municipio, on_delete=models.CASCADE, db_column='IdMunicipio')
     IdSectorEmpresarial = models.ForeignKey(SectorEmpresarial, on_delete=models.CASCADE, db_column='IdSectorEmpresarial')
     Nombre = models.CharField(max_length=250)
+    Correo = models.CharField(max_length=250)
     Descripcion = models.TextField()
     Foto = models.ImageField(upload_to='empresas/fotos/', null=True, blank=True)
 
@@ -139,6 +140,7 @@ class InstitucionEducativa(models.Model):
     IdMunicipio = models.ForeignKey(Municipio, on_delete=models.CASCADE, db_column='IdMunicipio')
     Universidad = models.BooleanField()
     Nombre = models.CharField(max_length=250)
+    Correo = models.CharField(max_length=250)
     Descripcion = models.TextField()
     Foto = models.ImageField(upload_to='instituciones/fotos/', null=True, blank=True)
 

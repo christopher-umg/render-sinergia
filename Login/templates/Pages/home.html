@@ -76,7 +76,7 @@
             <article class="mt-md-5">
                 {% if tipo.IdTipoUsuario == 1 or tipo.IdTipoUsuario == 2 %}
                 <h3 class="border-bottom text-light">Mis Proyectos</h3>
-                <a href="#" class="btn btn-secondary container-fluid row p-md-0 mb-md-4 ms-md-1 p-sm-0"
+                <a href="/api-generales/proyectos/" target="_blank" class="btn btn-secondary container-fluid row p-md-0 mb-md-4 ms-md-1 p-sm-0"
                     style="text-decoration: none;">
                     <div class="d-flex px-md-0 align-items-center ps-sm-0">
                         <div class="bg-light px-md-3 px-sm-3">
@@ -90,7 +90,7 @@
                 </a>
                 {% elif tipo.IdTipoUsuario == 4 or tipo.IdTipoUsuario == 5 %}
                 <h3 class="border-bottom text-light">Mis Vacantes</h3>
-                <a href="#" class="btn btn-secondary container-fluid row p-md-0 mb-md-4 ms-md-1 p-sm-0"
+                <a href="/api-generales/empleos/" target="_blank" class="btn btn-secondary container-fluid row p-md-0 mb-md-4 ms-md-1 p-sm-0"
                     style="text-decoration: none;">
                     <div class="d-flex px-md-0 align-items-center ps-sm-0">
                         <div class="bg-light px-md-3 px-sm-3">
@@ -188,36 +188,47 @@
                                 <p class="card-text">{{ proyecto.Descripcion }}</p>
                             </div>
                             <div class="card-footer">
-                                <a href="#" target="_blank"
-                                    class="btn btn-light border border-secondary sb-morado">Eliminar</a>
+                                <a href="/api-generales/proyectos/{{proyecto.IdProyecto}}/" target="_blank"
+                                    class="btn btn-light border border-secondary sb-morado">Editar</a>
                             </div>
                         </div>
                     </div>
                     {% endfor %}
 
                     {% elif tipo.IdTipoUsuario == 4 or tipo.IdTipoUsuario == 5 %}
-                    <div class="card ">
-                        <div class="card-header">
-                            <h6 class="card-title">Developer</h6>
-                            <P>Programación</p>
-                        </div>
-                        <div class="card-body" style="height: 200px; overflow: auto;">
-                            <p class="card-text">Lorem ipsum dolor sit amet consectetur adipisicing elit. Nobis
-                                vitae quasi distinctio architecto pariatur ipsa soluta maiores minus quia quisquam,
-                                rerum possimus voluptatem provident ullam illo eaque incidunt tempore excepturi.</p>
-                        </div>
-                        <div class="card-footer">
-                            <a href="#" target="_blank"
-                                class="btn btn-light border border-secondary sb-morado">Aplicar</a>
+                    {% for empleo in empleos %}
+                    <div class="col">
+                        <div class="card">
+                            <div class="card-header" style="height: 200px; overflow: auto;">
+                                <h5 class="card-title">{{ empleo.Postulacion }} ({{ empleo.IdCategoriasEmpleos.Nombre }})</h5>
+                                <p>{{ empleo.IdMunicipio.Nombre }}, {{ empleo.IdDepartamento.Nombre }} ({{ empleo.IdPais.Nombre }})</p>
+                                <p>{{ empleo.IdEmpresa.Nombre }} ({{ empleo.IdMoneda.Simbolo }} {{ empleo.OfertaSalarialI }} - {{ empleo.IdMoneda.Simbolo }} {{ empleo.OfertaSalarialF }})</p>
+                                <hr>
+                                {% if empleo.RequisitosExtra %}
+                                <a href="{{ empleo.RequisitosExtra.url }}" class="card-link" target="_blank">Info Adicional</a>,
+                                {% else %}
+                                <span class="card-link">Info Adicional</span>
+                                {% endif %}
+                            </div>
+                            <div class="card-body" style="height: 300px; overflow: auto;">
+                                <p>{{ empleo.FechaPublicacion }} - UTC</p>
+                                <p class="card-text">{{ empleo.Descripcion }}</p>
+                            </div>
+                            <div class="card-footer">
+                                <a href="/api-generales/empleos/{{empleo.IdPostulacionEmpleo}}/" target="_blank"
+                                    class="btn btn-light border border-secondary sb-morado">Editar</a>
+                            </div>
                         </div>
                     </div>
+                    {% endfor %}
+
                     {% endif %}
                 </div>
             </article>
 
             <br><br>
 
-            <h3 class="border-bottom text-light">Contáctanos</h3>
+            <!-- <h3 class="border-bottom text-light">Contáctanos</h3>
             <br><br>
 
             <div class="d-flex justify-content-center">
@@ -236,7 +247,7 @@
                         <button class="btn btn-light border border-secondary sb-morado mb-md-5">Enviar</button>
                     </div>
                 </section>
-            </div>
+            </div> -->
 
 
         </section>
