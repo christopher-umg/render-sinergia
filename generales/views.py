@@ -37,61 +37,55 @@ class MunicipioViewSet(viewsets.ModelViewSet):
     serializer_class = MunicipioSerializer
 
 class SectorEmpresarialViewSet(viewsets.ModelViewSet):
-    authentication_classes = [SessionAuthentication, BasicAuthentication]
-    permission_classes = [IsAuthenticated]
     queryset = SectorEmpresarial.objects.all()
     serializer_class = SectorEmpresarialSerializer
 
 class TipoUsuarioViewSet(viewsets.ModelViewSet):
-    authentication_classes = [SessionAuthentication, BasicAuthentication]
-    permission_classes = [IsAuthenticated]
     queryset = TipoUsuario.objects.all()
     serializer_class = TipoUsuarioSerializer
 
 class TipoActividadUsuarioViewSet(viewsets.ModelViewSet):
-    authentication_classes = [SessionAuthentication, BasicAuthentication]
-    permission_classes = [IsAuthenticated]
     queryset = TipoActividadUsuario.objects.all()
     serializer_class = TipoActividadUsuarioSerializer
 
 class MonedaViewSet(viewsets.ModelViewSet):
-    authentication_classes = [SessionAuthentication, BasicAuthentication]
-    permission_classes = [IsAuthenticated]
     queryset = Moneda.objects.all()
     serializer_class = MonedaSerializer
 
 class CategoriasEmpleosViewSet(viewsets.ModelViewSet):
-    authentication_classes = [SessionAuthentication, BasicAuthentication]
-    permission_classes = [IsAuthenticated]
     queryset = CategoriasEmpleos.objects.all()
     serializer_class = CategoriasEmpleosSerializer
 
 class CategoriaProyectosViewSet(viewsets.ModelViewSet):
-    authentication_classes = [SessionAuthentication, BasicAuthentication]
-    permission_classes = [IsAuthenticated]
     queryset = CategoriaProyectos.objects.all()
     serializer_class = CategoriaProyectosSerializer
 
 class EmpresaViewSet(viewsets.ModelViewSet):
-    authentication_classes = [SessionAuthentication, BasicAuthentication]
-    permission_classes = [IsAuthenticated]
     queryset = Empresa.objects.all()
     serializer_class = EmpresaSerializer
 
 class InstitucionEducativaViewSet(viewsets.ModelViewSet):
-    authentication_classes = [SessionAuthentication, BasicAuthentication]
-    permission_classes = [IsAuthenticated]
     queryset = InstitucionEducativa.objects.all()
     serializer_class = InstitucionEducativaSerializer
 
 class ProyectoViewSet(viewsets.ModelViewSet):
     authentication_classes = [SessionAuthentication, BasicAuthentication]
     permission_classes = [IsAuthenticated]
-    queryset = Proyecto.objects.filter(IdProyecto=0)
+    queryset = Proyecto.objects.all()
     serializer_class = ProyectoSerializer
+
+    def get_queryset(self):
+        if self.action == 'list':
+            return Proyecto.objects.filter(IdUsuario=0)
+        return Proyecto.objects.all()
 
 class PostulacionEmpleoViewSet(viewsets.ModelViewSet):
     authentication_classes = [SessionAuthentication, BasicAuthentication]
     permission_classes = [IsAuthenticated]
-    queryset = PostulacionEmpleo.objects.filter(IdPostulacionEmpleo=0)
+    queryset = PostulacionEmpleo.objects.all()
     serializer_class = PostulacionEmpleoSerializer
+
+    def get_queryset(self):
+        if self.action == 'list':
+            return PostulacionEmpleo.objects.filter(IdEmpresa=0)
+        return PostulacionEmpleo.objects.all()
