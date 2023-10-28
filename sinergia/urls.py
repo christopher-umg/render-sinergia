@@ -16,6 +16,7 @@ Including another URLconf
 from django.contrib import admin
 from django.urls import path, include
 from django.contrib.auth.models import User
+from django.contrib.auth.decorators import login_required
 from rest_framework import routers, serializers, viewsets
 from Login import views
 
@@ -47,12 +48,12 @@ urlpatterns = [
     # Rutas front
     path('', views.helloWorld,name="inicio"),
     path('login/',views.LoginPage, name='login_page'),
-    path('home/',views.homePage, name='home_page'),
     path('singUp/',views.SingUpPage, name='singUp'),
-    path('projects/',views.projectPage, name='projects'),
-    path('jobs/',views.jobsPage, name='jobs'),
-    path('help/',views.helpPage,name='help'),
-    path('logout/',views.cerrarSesion,name='logOut')
+    path('home/',login_required(views.homePage, login_url='/login/'), name='home_page'),
+    path('projects/',login_required(views.projectPage, login_url='/login/'), name='projects'),
+    path('jobs/',login_required(views.jobsPage, login_url='/login/'), name='jobs'),
+    path('help/',login_required(views.helpPage, login_url='/login/'), name='help'),
+    path('logout/',views.cerrarSesion, name='logOut')
 ]
 
 

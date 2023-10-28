@@ -5,7 +5,7 @@ from django.http import HttpResponse
 from django.contrib.auth.models import User
 from django.contrib.auth.forms import AuthenticationForm
 from django.contrib.auth import login, logout, authenticate
-from .models import InfoUsuario
+from .models import InfoUsuario, Proyecto
 from generales.models import TipoUsuario, Pais, Departamento, Municipio, InstitucionEducativa, Empresa
 import traceback
 
@@ -31,13 +31,14 @@ def LoginPage(request):
 def homePage(request):
     infoUsuario = InfoUsuario.objects.filter(IdUsuario=request.user.id).values('IdUsuario', 'IdTipoUsuario', 'FotoPerfil')
     tipoUsuario = TipoUsuario.objects.filter(IdTipoUsuario=infoUsuario[0]['IdTipoUsuario']).values('IdTipoUsuario', 'Nombre')
+    proyectos = Proyecto.objects.filter(IdUsuario=request.user.id,Estado=True).select_related('IdCategoriaProyecto')
 
-    return render(request,'Pages/home.html',{'info': infoUsuario[0], 'tipo': tipoUsuario[0]})
+    return render(request,'Pages/home.html',{'info': infoUsuario[0], 'tipo': tipoUsuario[0], 'proyectos': proyectos})
 
 def SingUpPage(request):
     if request.method =='GET':
         tipos_usuarios = TipoUsuario.objects.filter(Estado=True).values('IdTipoUsuario', 'Nombre')
-        instituciones_educativas = InstitucionEducativa.objects.all().values('IdInstitucionEducativa', 'Nombre')
+        instituciones_educativas = InstitucionEducativa.objects.all().exclude(IdInstitucionEducativa=1).values('IdInstitucionEducativa', 'Nombre')
 
         return render(request,'Pages/SignUp.html', {'tipos_usuarios': tipos_usuarios, 'instituciones_educativas': instituciones_educativas})
     else:
@@ -83,13 +84,23 @@ def SingUpPage(request):
         })
 
 def projectPage(request):
-    return render(request,'Pages/Proyectos.html')
+    infoUsuario = InfoUsuario.objects.filter(IdUsuario=request.user.id).values('IdUsuario', 'IdTipoUsuario', 'FotoPerfil')
+    tipoUsuario = TipoUsuario.objects.filter(IdTipoUsuario=infoUsuario[0]['IdTipoUsuario']).values('IdTipoUsuario', 'Nombre')
+    proyectos = Proyecto.objects.filter(Estado=True).select_related('IdCategoriaProyecto', 'IdUsuario')
+
+    return render(request,'Pages/Proyectos.html',{'info': infoUsuario[0], 'tipo': tipoUsuario[0], 'proyectos': proyectos})
 
 def jobsPage(request):
-    return render(request,'Pages/BolsaTrabajo.html')
+    infoUsuario = InfoUsuario.objects.filter(IdUsuario=request.user.id).values('IdUsuario', 'IdTipoUsuario', 'FotoPerfil')
+    tipoUsuario = TipoUsuario.objects.filter(IdTipoUsuario=infoUsuario[0]['IdTipoUsuario']).values('IdTipoUsuario', 'Nombre')
+
+    return render(request,'Pages/BolsaTrabajo.html',{'info': infoUsuario[0], 'tipo': tipoUsuario[0]})
 
 def helpPage(request):
-    return render(request,'Pages/espacioApoyo.html')
+    infoUsuario = InfoUsuario.objects.filter(IdUsuario=request.user.id).values('IdUsuario', 'IdTipoUsuario', 'FotoPerfil')
+    tipoUsuario = TipoUsuario.objects.filter(IdTipoUsuario=infoUsuario[0]['IdTipoUsuario']).values('IdTipoUsuario', 'Nombre')
+
+    return render(request,'Pages/espacioApoyo.html',{'info': infoUsuario[0], 'tipo': tipoUsuario[0]})
 
 def cerrarSesion(request):
     logout(request)

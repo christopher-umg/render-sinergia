@@ -1,7 +1,8 @@
 from rest_framework import viewsets
 from rest_framework.response import Response
 from .models import Pais, Departamento, Municipio, SectorEmpresarial, TipoUsuario, TipoActividadUsuario, Moneda, CategoriasEmpleos, CategoriaProyectos, Empresa, InstitucionEducativa
-from .serializers import PaisSerializer, DepartamentoSerializer, MunicipioSerializer, SectorEmpresarialSerializer, TipoUsuarioSerializer, TipoActividadUsuarioSerializer, MonedaSerializer, CategoriasEmpleosSerializer, CategoriaProyectosSerializer, EmpresaSerializer, InstitucionEducativaSerializer
+from Login.models import Proyecto
+from .serializers import PaisSerializer, DepartamentoSerializer, MunicipioSerializer, SectorEmpresarialSerializer, TipoUsuarioSerializer, TipoActividadUsuarioSerializer, MonedaSerializer, CategoriasEmpleosSerializer, CategoriaProyectosSerializer, EmpresaSerializer, InstitucionEducativaSerializer, ProyectoSerializer
 
 class PaisViewSet(viewsets.ModelViewSet):
     queryset = Pais.objects.all()
@@ -64,3 +65,7 @@ class EmpresaViewSet(viewsets.ModelViewSet):
 class InstitucionEducativaViewSet(viewsets.ModelViewSet):
     queryset = InstitucionEducativa.objects.all()
     serializer_class = InstitucionEducativaSerializer
+
+class ProyectoViewSet(viewsets.ModelViewSet):
+    queryset = Proyecto.objects.filter(Estado=1)
+    serializer_class = ProyectoSerializer

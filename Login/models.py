@@ -48,7 +48,6 @@ class Proyecto(models.Model):
     Tipo = models.IntegerField()
     Titulo = models.CharField(max_length=250)
     Descripcion = models.TextField()
-    FechaPublicacion = models.DateTimeField()
     AutoresCV = models.FileField(upload_to='autores-cv/', null=True, blank=True)
     DocAceptacion = models.FileField(upload_to='documentos-aceptacion/', null=True, blank=True)
     DocClasificacion = models.FileField(upload_to='documentos-clasificacion/', null=True, blank=True)
@@ -61,6 +60,7 @@ class Proyecto(models.Model):
     ProFinanciera = models.FileField(upload_to='documentos-financieros/', null=True, blank=True)
     Presentacion = models.FileField(upload_to='presentaciones/', null=True, blank=True)
     Video = models.FileField(upload_to='videos/', null=True, blank=True)
+    FechaPublicacion = models.DateTimeField(auto_now_add=True)
     created_at = models.DateTimeField(auto_now_add=True)
     updated_at = models.DateTimeField(auto_now=True)
 
