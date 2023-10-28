@@ -29,7 +29,7 @@ def LoginPage(request):
             return redirect('home_page')
 
 def homePage(request):
-    infoUsuario = InfoUsuario.objects.filter(IdUsuario=request.user.id).values('IdUsuario', 'IdEmpresa', 'IdTipoUsuario', 'FotoPerfil')
+    infoUsuario = InfoUsuario.objects.filter(IdUsuario=request.user.id).values('IdInfoUsuario', 'IdUsuario', 'IdEmpresa', 'IdTipoUsuario', 'FotoPerfil')
     tipoUsuario = TipoUsuario.objects.filter(IdTipoUsuario=infoUsuario[0]['IdTipoUsuario']).values('IdTipoUsuario', 'Nombre')
     proyectos = Proyecto.objects.filter(IdUsuario=request.user.id,Estado=True).select_related('IdCategoriaProyecto')
     empleos = PostulacionEmpleo.objects.filter(IdEmpresa=infoUsuario[0]['IdEmpresa'],Estado=True).select_related('IdPais', 'IdDepartamento', 'IdMunicipio', 'IdEmpresa', 'IdCategoriasEmpleos', 'IdMoneda')

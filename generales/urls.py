@@ -1,6 +1,6 @@
 from django.urls import path, include
 from rest_framework import routers
-from .views import PaisViewSet, DepartamentoViewSet, MunicipioViewSet, SectorEmpresarialViewSet, TipoUsuarioViewSet, TipoActividadUsuarioViewSet, MonedaViewSet, CategoriasEmpleosViewSet, CategoriaProyectosViewSet, EmpresaViewSet, InstitucionEducativaViewSet, ProyectoViewSet, PostulacionEmpleoViewSet
+from .views import PaisViewSet, DepartamentoViewSet, MunicipioViewSet, SectorEmpresarialViewSet, TipoUsuarioViewSet, TipoActividadUsuarioViewSet, MonedaViewSet, CategoriasEmpleosViewSet, CategoriaProyectosViewSet, EmpresaViewSet, InstitucionEducativaViewSet, InfoUsuarioViewSet, ProyectoViewSet, PostulacionEmpleoViewSet
 
 
 router = routers.DefaultRouter()
@@ -21,6 +21,7 @@ router.register(r'municipios', MunicipioViewSet)
 # router.register(r'categorias-proyectos', CategoriaProyectosViewSet)
 # router.register(r'empresas', EmpresaViewSet)
 # router.register(r'instituciones-educativas', InstitucionEducativaViewSet)
+router.register(r'info-usuarios', InfoUsuarioViewSet)
 router.register(r'proyectos', ProyectoViewSet)
 router.register(r'empleos', PostulacionEmpleoViewSet)
 

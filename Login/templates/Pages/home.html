@@ -67,7 +67,8 @@
 
         <div class="text-light sb-text-nameRol">
             <h2>{{ request.user.first_name }} {{ request.user.last_name }}
-                <br>{{ tipo.Nombre }}
+                <br>{{ tipo.Nombre }} <a href="/api-generales/info-usuarios/{{info.IdInfoUsuario}}/" target="_blank"
+                class="btn btn-light border border-secondary sb-morado">Editar</a>
             </h2>
         </div>
     </div>

@@ -3,8 +3,8 @@ from rest_framework.response import Response
 from rest_framework.authentication import SessionAuthentication, BasicAuthentication
 from rest_framework.permissions import IsAuthenticated
 from .models import Pais, Departamento, Municipio, SectorEmpresarial, TipoUsuario, TipoActividadUsuario, Moneda, CategoriasEmpleos, CategoriaProyectos, Empresa, InstitucionEducativa
-from Login.models import Proyecto, PostulacionEmpleo
-from .serializers import PaisSerializer, DepartamentoSerializer, MunicipioSerializer, SectorEmpresarialSerializer, TipoUsuarioSerializer, TipoActividadUsuarioSerializer, MonedaSerializer, CategoriasEmpleosSerializer, CategoriaProyectosSerializer, EmpresaSerializer, InstitucionEducativaSerializer, ProyectoSerializer, PostulacionEmpleoSerializer
+from Login.models import InfoUsuario, Proyecto, PostulacionEmpleo
+from .serializers import PaisSerializer, DepartamentoSerializer, MunicipioSerializer, SectorEmpresarialSerializer, TipoUsuarioSerializer, TipoActividadUsuarioSerializer, MonedaSerializer, CategoriasEmpleosSerializer, CategoriaProyectosSerializer, EmpresaSerializer, InstitucionEducativaSerializer, InfoUsuarioSerializer, ProyectoSerializer, PostulacionEmpleoSerializer
 
 class PaisViewSet(viewsets.ModelViewSet):
     queryset = Pais.objects.all()
@@ -67,6 +67,17 @@ class EmpresaViewSet(viewsets.ModelViewSet):
 class InstitucionEducativaViewSet(viewsets.ModelViewSet):
     queryset = InstitucionEducativa.objects.all()
     serializer_class = InstitucionEducativaSerializer
+
+class InfoUsuarioViewSet(viewsets.ModelViewSet):
+    authentication_classes = [SessionAuthentication, BasicAuthentication]
+    permission_classes = [IsAuthenticated]
+    queryset = InfoUsuario.objects.all()
+    serializer_class = InfoUsuarioSerializer
+
+    def get_queryset(self):
+        if self.action == 'list':
+            return InfoUsuario.objects.filter(IdInfoUsuario=0)
+        return InfoUsuario.objects.all()
 
 class ProyectoViewSet(viewsets.ModelViewSet):
     authentication_classes = [SessionAuthentication, BasicAuthentication]
