@@ -4,10 +4,12 @@ import uuid
 from django.utils.text import get_valid_filename
 
 def generar_nombre_uniq(ruta_de_destino, instance, filename):
-    _, ext = os.path.splitext(filename)
-    nombre_original = get_valid_filename(os.path.basename(filename))
-    nombre_uniq = f'{nombre_original}_{uuid.uuid4()}{ext}'
-    return os.path.join(ruta_de_destino, nombre_uniq)
+    if filename:
+        _, ext = os.path.splitext(filename)
+        nombre_original = get_valid_filename(os.path.basename(filename))
+        nombre_uniq = f'{nombre_original}_{uuid.uuid4()}{ext}'
+        return os.path.join(ruta_de_destino, nombre_uniq)
+    return filename
 
 class Pais(models.Model):
     IdPais = models.AutoField(primary_key=True, db_column='IdPais')
@@ -143,7 +145,7 @@ class InstitucionEducativa(models.Model):
     def save(self, *args, **kwargs):
         if not self.IdInstitucionEducativa:
             self.Foto.name = generar_nombre_uniq('instituciones/fotos/', self, self.Foto.name)
-        super(Empresa, self).save(*args, **kwargs)
+        super(InstitucionEducativa, self).save(*args, **kwargs)
 
     def __str__(self):
         return self.Nombre

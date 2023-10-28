@@ -6,10 +6,12 @@ import uuid
 from django.utils.text import get_valid_filename
 
 def generar_nombre_uniq(ruta_de_destino, instance, filename):
-    _, ext = os.path.splitext(filename)
-    nombre_original = get_valid_filename(os.path.basename(filename))
-    nombre_uniq = f'{nombre_original}_{uuid.uuid4()}{ext}'
-    return os.path.join(ruta_de_destino, nombre_uniq)
+    if filename:
+        _, ext = os.path.splitext(filename)
+        nombre_original = get_valid_filename(os.path.basename(filename))
+        nombre_uniq = f'{nombre_original}_{uuid.uuid4()}{ext}'
+        return os.path.join(ruta_de_destino, nombre_uniq)
+    return filename
 
 class InfoUsuario(models.Model):
     IdInfoUsuario = models.AutoField(primary_key=True, db_column='IdInfoUsuario')
@@ -42,6 +44,8 @@ class Proyecto(models.Model):
     IdProyecto = models.AutoField(primary_key=True, db_column='IdProyecto')
     IdUsuario = models.ForeignKey(User, on_delete=models.CASCADE, db_column='IdUsuario')
     IdCategoriaProyecto = models.ForeignKey(CategoriaProyectos, on_delete=models.CASCADE, db_column='IdCategoriaProyecto')
+    Estado = models.BooleanField(default=False)
+    Tipo = models.IntegerField()
     Titulo = models.CharField(max_length=250)
     Descripcion = models.TextField()
     FechaPublicacion = models.DateTimeField()
@@ -57,6 +61,8 @@ class Proyecto(models.Model):
     ProFinanciera = models.FileField(upload_to='documentos-financieros/', null=True, blank=True)
     Presentacion = models.FileField(upload_to='presentaciones/', null=True, blank=True)
     Video = models.FileField(upload_to='videos/', null=True, blank=True)
+    created_at = models.DateTimeField(auto_now_add=True)
+    updated_at = models.DateTimeField(auto_now=True)
 
     def save(self, *args, **kwargs):
         if not self.IdProyecto:

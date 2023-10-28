@@ -13,7 +13,10 @@
     <!--Estilos Generales-->
     <link rel="stylesheet" type="text/css" href="{% static 'css/general.css' %}">
 
-    <link rel="stylesheet" type="text/css" href="{% static 'css/bolsaempleo.css' %}">
+    <!-- <link rel="stylesheet" type="text/css" href="../Css/Proyectos.css"> -->
+    <link rel="stylesheet" type="text/css" href="{% static 'css/proyectos.css' %}">
+    <link type="text/css" href="{% static 'vendor/swiper/swiper-bundle.min.css' %}" rel="stylesheet">
+    <link rel="stylesheet" type="text/css" href="{% static 'vendor/glightbox/css/glightbox.min.css' %}">
 
     <title>Bolsa de Trabajo</title>
 </head>
@@ -50,32 +53,49 @@
     <header class="text-light text-center mt-md-5 mt-sm-5">
         <h1>¿Buscas Trabajo?</h1>
         <p>¡Encuentra oportunidades emocionantes y haz crecer tu carrera en la industria de tus sueños!</p>
-        <div
-            class="bg-light container d-flex col-md-8 sb-height-1 sb-margin-1 align-items-center justify-content-between">
-            <form class="d-flex col-md-6" role="search">
-                <input class="form-control me-2" type="search" placeholder="Categoría" aria-label="Search">
-            </form>
-            <form class="d-flex col-md-5" role="search">
-                <input class="form-control me-2" type="search" placeholder="País" aria-label="Search">
-            </form>
-            <button class="btn btn-primary" type="submit">Buscar</button>
-        </div>
-        <br>
     </header>
     <main class="bg-light container-fluid pt-md-1 pt-xxl-5 pt-xl-5 pt-lg-5 pt-md-5 pt-sm-5">
-        <section class="container">
-            <article class="">
-                <div class="row row-cols-1 rows-cols-md-2 row-cols-xl-3 rows-cols-lg-2 g-4 mt-2">
-                    <div class="col">
+        <section id="portfolio" class="portfolio">
+            <div class="container" data-aos="fade-up">
+                <div class="row" data-aos="fade-up" data-aos-delay="100">
+                    <div class="col-lg-12 d-flex ">
+                        <ul id="portfolio-flters" class="d-flex justify-content-between col-md-12">
+                            <li class="filter-active" data-filter="*">Todos</li>
+                            <li data-filter=".Industrial">Categoria 1</li>
+                            <li data-filter=".Tecnologico">Categoria 2</li>
+                            <!-- <form class="d-flex" role="search">
+                                <input class="form-control me-2" type="search" placeholder="Buscar" aria-label="Search">
+                                <button class="btn btn-primary" type="submit">Buscar</button>
+                            </form> -->
+                        </ul>
+
+                    </div>
+                </div>
+                <div class="row portfolio-container" data-aos="fade-up" data-aos-delay="200">
+                    <div class="col-lg-4 col-md-6 portfolio-item Industrial">
                         <div class="card ">
                             <div class="card-header">
                                 <h6 class="card-title">Developer</h6>
                                 <P>Programación</p>
                             </div>
-                            <div class="card-body">
-                                <P>Empresa: Tec Solutions</P>
-                                <P>Lugar: Técpan (Chimaltenanto), Guatemala</p>
-                                <P>Oferta Salarial: $3000 a $5000</P>
+                            <div class="card-body" style="height: 200px; overflow: auto;">
+                                <p class="card-text">Lorem ipsum dolor sit amet consectetur adipisicing elit. Nobis
+                                    vitae quasi distinctio architecto pariatur ipsa soluta maiores minus quia quisquam,
+                                    rerum possimus voluptatem provident ullam illo eaque incidunt tempore excepturi.</p>
+                            </div>
+                            <div class="card-footer">
+                                <a href="#" target="_blank"
+                                    class="btn btn-light border border-secondary sb-morado">Aplicar</a>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-lg-4 col-md-6 portfolio-item Tecnologico">
+                        <div class="card ">
+                            <div class="card-header">
+                                <h6 class="card-title">PABCD</h6>
+                                <P>Machine Learning</p>
+                            </div>
+                            <div class="card-body" style="height: 200px; overflow: auto;">
                                 <p class="card-text">Lorem ipsum dolor sit amet consectetur adipisicing elit. Nobis
                                     vitae quasi distinctio architecto pariatur ipsa soluta maiores minus quia quisquam,
                                     rerum possimus voluptatem provident ullam illo eaque incidunt tempore excepturi.</p>
@@ -87,8 +107,7 @@
                         </div>
                     </div>
                 </div>
-            </article>
-            <br><br>
+            </div>
         </section>
     </main>
     <footer class="bg-blue text-light text-center hfooter-sb">
@@ -100,6 +119,10 @@
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.min.js"
         integrity="sha384-cuYeSxntonz0PPNlHhBs68uyIAVpIIOZZ5JqeqvYYIcEL727kskC66kF92t6Xl2V"
         crossorigin="anonymous"></script>
+    <script src="{% static 'vendor/swiper/swiper-bundle.min.js' %}"></script>
+    <script src="{% static 'vendor/glightbox/js/glightbox.min.js' %}"></script>
+    <script src="{% static 'vendor/isotope-layout/isotope.pkgd.min.js' %}"></script>
+    <script src="{% static 'js/proyectosscript.js' %}"></script>
 </body>
 
 </html>
